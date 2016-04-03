@@ -38,10 +38,20 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider, $ht
       controllerAs: 'pc'
     })
 
+    /* for production
   authProvider.init({
       domain: process.env.AUTH0_DOMAIN,
-      clientID: process.env.AUTH0_CLIENT_ID
+      clientID: process.env.AUTH0_CLIENT_ID,
       callbackURL: process.env.location.href,
+      // Here include the URL to redirect to if the user tries to access a resource when not authenticated.
+      loginUrl: '/login'
+    });
+    */ 
+
+  authProvider.init({
+      domain: 'dchiamp.auth0.com',
+      clientID: 'sQ2bkUmtSU3Pydx510qzd3xQuN4wtn5W',
+      callbackURL: location.href,
       // Here include the URL to redirect to if the user tries to access a resource when not authenticated.
       loginUrl: '/login'
     });
