@@ -1,7 +1,9 @@
-Basic MEAN stack directory structure
+KYPOS
 
-all angular (app) stuff inside dist
+An app to connect people to urban gardens.
 
-in server js comment out app.get('/')[...]
+Find Gardens near you.
 
-then uncomment angular route to connect front end to api
+Post your unsed garden space for others to cultivate.
+
+Foster community and healthy living.
