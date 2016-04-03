@@ -1,4 +1,5 @@
 var User = require('../models/users')
+var auth = require('../resources/auth');
 
 var authController = {
   signUp: function (req, res) {
