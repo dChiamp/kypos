@@ -1,33 +1,9 @@
 var app = angular
   .module('kypos', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt'])
 
-  // .config( function(authProvider) { 
-  //   authProvider.init({
-  //   domain: 'dchiamp.auth0.com',
-  //   clientID: 'sQ2bkUmtSU3Pydx510qzd3xQuN4wtn5W'
-  //   });
-  // })
-  // .run(function(auth) {
-  // // This hooks al auth events to check everything as soon as the app starts
-  // auth.hookEvents();
-  // });
-
 
 
 app.config(configRoutes)
-
-
-/*
-app.config(authProviderConfig)
-authProviderConfig.$inject = ['auth0', 'angular-storage', 'angular-jwt'];
-
-function authProviderConfig(auth0, angular-storage, angular-jwt) {
-  authProvider.init({
-    domain: 'dchiamp.auth0.com',
-    clientID: 'sQ2bkUmtSU3Pydx510qzd3xQuN4wtn5W'
-  })
-}
-*/
 
 
 // configRoutes.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
@@ -63,9 +39,9 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider, $ht
     })
 
   authProvider.init({
-      domain: 'dchiamp.auth0.com',
-      clientID: 'sQ2bkUmtSU3Pydx510qzd3xQuN4wtn5W',
-      callbackURL: location.href,
+      domain: process.env.AUTH0_DOMAIN,
+      clientID: process.env.AUTH0_CLIENT_ID
+      callbackURL: process.env.location.href,
       // Here include the URL to redirect to if the user tries to access a resource when not authenticated.
       loginUrl: '/login'
     });
