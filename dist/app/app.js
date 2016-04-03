@@ -1,8 +1,8 @@
 var app = angular
-  .module('kypos', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt'])
+  .module('kypos', ['ui.router', 'auth0', 'satellizer','angular-storage', 'angular-jwt'])
 
 
-
+app.service('Account', Account)
 app.config(configRoutes)
 
 
@@ -25,19 +25,68 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider, $ht
       controller: 'GardensController',
       controllerAs: 'gc'
     })
+    .state('signup', {
+      url: '/signup',
+      templateUrl: 'app/public/templates/signup.html',
+      controller: 'SignupController',
+      controllerAs: 'sc',
+      resolve: {
+        skipIfLoggedIn: skipIfLoggedIn
+      }
+    })
     .state('login', {
       url: '/login',
       templateUrl: 'app/public/templates/login.html',
       controller: 'LoginController',
-      controllerAs: 'lc'
+      controllerAs: 'lc',
+      resolve: {
+        skipIfLoggedIn: skipIfLoggedIn
+      }
+    })
+    .state('logout', {
+      url: '/logout',
+      template: null,
+      controller: 'LogoutController',
+      resolve: {
+        loginRequired: loginRequired
+      }
     })
     .state('profile', {
       url: '/profile',
       templateUrl: 'app/public/templates/profile.html',
       controller: 'ProfileController',
-      controllerAs: 'pc'
+      controllerAs: 'profile',
+      resolve: {
+        loginRequired: loginRequired
+      }
     })
 
+    // satellizer helper functions
+
+    function skipIfLoggedIn($q, $auth) {
+      var deferred = $q.defer();
+      if ($auth.isAuthenticated()) {
+        deferred.reject();
+      } else {
+        deferred.resolve();
+      }
+      return deferred.promise;
+    }
+
+    function loginRequired($q, $location, $auth) {
+      var deferred = $q.defer();
+      if ($auth.isAuthenticated()) {
+        deferred.resolve();
+      } else {
+        $location.path('/login');
+      }
+      return deferred.promise;
+    }
+
+}
+
+    
+    // AUTH0
     /* for production
   authProvider.init({
       domain: process.env.AUTH0_DOMAIN,
@@ -46,7 +95,7 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider, $ht
       // Here include the URL to redirect to if the user tries to access a resource when not authenticated.
       loginUrl: '/login'
     });
-    */ 
+    
 
   authProvider.init({
       domain: 'dchiamp.auth0.com',
@@ -114,3 +163,102 @@ app.controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
     }
   });
 });
+
+*/ 
+//////////////
+// Services //
+//////////////
+
+Account.$inject = ["$http", "$q", "$auth"]; // minification protection
+function Account($http, $q, $auth) {
+  var self = this;
+  self.user = null;
+
+  self.signup = signup;
+  self.login = login;
+  self.logout = logout;
+  self.currentUser = currentUser;
+  self.getProfile = getProfile;
+  self.updateProfile = updateProfile;
+
+  function signup(userData) {
+    return (
+      $auth
+        .signup(userData) // signup (https://github.com/sahat/satellizer#authsignupuser-options)
+        .then(
+          function onSuccess(response) {
+            $auth.setToken(response.data.token); // set token (https://github.com/sahat/satellizer#authsettokentoken)
+          },
+
+          function onError(error) {
+            console.error(error);
+          }
+        )
+    );
+  }
+
+  function login(userData) {
+    return (
+      $auth
+        .login(userData) // login (https://github.com/sahat/satellizer#authloginuser-options)
+        .then(
+          function onSuccess(response) {
+            $auth.setToken(response.data.token); // set token (https://github.com/sahat/satellizer#authsettokentoken)
+          },
+
+          function onError(error) {
+            console.error(error);
+          }
+        )
+    );
+  }
+
+  function logout() {
+    return (
+      $auth
+        .logout() // delete token (https://github.com/sahat/satellizer#authlogout)
+        .then(function() {
+          self.user = null;
+        })
+    );
+  }
+
+  function currentUser() {
+    if ( self.user ) { return self.user; }
+    if ( !$auth.isAuthenticated() ) { return null; }
+
+    var deferred = $q.defer();
+    getProfile().then(
+      function onSuccess(response) {
+        self.user = response.data;
+        deferred.resolve(self.user);
+      },
+
+      function onError() {
+        $auth.logout();
+        self.user = null;
+        deferred.reject();
+      }
+    )
+    self.user = promise = deferred.promise;
+    return promise;
+
+  }
+
+  function getProfile() {
+    return $http.get('/api/users/profile');
+  }
+
+  function updateProfile(profileData) {
+    return (
+      $http
+        .put('/api/users/profile', profileData)
+        .then(
+          function (response) {
+            self.user = response.data;
+          }
+        )
+    );
+  }
+
+}

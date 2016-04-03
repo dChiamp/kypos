@@ -1,11 +1,11 @@
-<div class="login-page clearfix">
+<!-- <div class="login-page clearfix">
   <div class="login-box auth0-box">
     <p>Sign in to Kypos</p>
-<!--     <a href="" ng-controller="LoginController as lc" ng-click="auth.signin()" class="btn btn-primary btn-lg btn-block">SignIn</a> -->
+    <a href="" ng-controller="LoginController as lc" ng-click="auth.signin()" class="btn btn-primary btn-lg btn-block">SignIn</a>
 
      <a href="" ng-click="auth.signin()" class="btn btn-primary btn-lg btn-block">SignIn</a>
 
-    <!-- <input type="submit" ng-click="logout()" value="Log out" /> -->
+    <input type="submit" ng-click="logout()" value="Log out" />
 
      <a href="" ng-click="logout()" class="btn btn-danger btn-lg btn-block">SignOut</a>
 
@@ -13,3 +13,19 @@
 
   </div>
 </div>
+ -->
+
+ 
+<h3 class="text-center">Welcome back!</h3>
+<hr>
+<form ng-submit="lc.login()">
+  <div class="form-group">
+    <input type="text" ng-model="lc.new_user.email" class="form-control" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <input type="password" ng-model="lc.new_user.password" class="form-control" placeholder="Password">
+  </div>
+  <input type="submit" value="Log In" class="btn btn-block btn-info">
+</form>
+<br>
+<p class="text-muted">Don't have an account? <a ui-sref="signup">Sign up here.</a></p>

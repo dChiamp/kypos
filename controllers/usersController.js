@@ -5,6 +5,7 @@ var usersController = {
     User.findById(req.user, function (err, user) {
       // res.send(user.populate('posts'));
       console.log(user)
+      res.send(user);
     })
   },
   editProfile: function(req, res) {

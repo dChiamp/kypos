@@ -22,6 +22,11 @@
 
   <script src='/bower_components/angular-simple-logger/dist/angular-simple-logger.js'></script>
 
+  <!-- satellizer -->
+   <!-- satellizer -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/satellizer/0.13.4/satellizer.min.js"></script>
+
+
   <!-- AUTH0 -->
   <!-- We use client cookies to save the user credentials -->
   <script src="//code.angularjs.org/1.2.16/angular-cookies.min.js"></script>
@@ -41,8 +46,12 @@
   <!-- local scripts-->
   <script type="text/javascript" src="/app/app.js"></script>
   <script type="text/javascript" src="/app/controllers/GardensController.js"></script>
+  <script type="text/javascript" src="/app/controllers/HomeController.js"></script>
   <script type="text/javascript" src="/app/controllers/LoginController.js"></script>
+  <script type="text/javascript" src="/app/controllers/LogoutController.js"></script>
   <script type="text/javascript" src="/app/controllers/ProfileController.js"></script>
+  <script type="text/javascript" src="/app/controllers/SignupController.js"></script>
+    <script type="text/javascript" src="/app/controllers/MainController.js"></script>
 </head>
 
 <body>
@@ -62,8 +71,10 @@
       <ul class="nav navbar-nav">
         <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
         <!-- <li><a ui-sref="home">Home</a></li> -->
-        <li><a ui-sref="profile">Profile</a></li>
         <li><a ui-sref="login">Login</a></li>
+        <li><a ui-sref="signup">Signup</a></li>
+        <li><a ui-sref="profile">Profile</a></li>
+        <li><a ui-sref="logout">Log Out</a></li>
         <!-- <li><a href="" ng-click="logout()">SignOut</a></li> -->
       </ul>
   </div><!-- /.container-fluid -->
