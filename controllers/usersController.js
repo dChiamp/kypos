@@ -1,4 +1,4 @@
-var User = require('..models/users')
+var User = require('../models/users')
 
 var usersController = {
   showProfile: function (req, res) {

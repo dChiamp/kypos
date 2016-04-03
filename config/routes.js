@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var auth = require('./resources/auth');
+var auth = require('../resources/auth');
 
 var gardensController = require('../controllers/gardensController');
+var usersController = require('../controllers/usersController');
+var authController = require('../controllers/authController');
 
 //  garden crud api
 router.route('/api/gardens')
