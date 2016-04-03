@@ -6,6 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
+var bcrypt = require('bcryptjs');
+var auth = require('./resources/auth');
+
+// require and load dotenv
+require('dotenv').load();
 
 mongoose.connect('mongodb://localhost/kypos');
 
