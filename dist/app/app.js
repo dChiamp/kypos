@@ -1,4 +1,4 @@
-var app = angular.module('kypos', ['uiGmapgoogle-maps', 'ui.router', 'geolocation'])
+var app = angular.module('kypos', ['ui.router'])
 
 app.config(config)
 
@@ -18,28 +18,8 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('home-template', {
       url: '/',
       templateUrl: 'app/public/templates/home.html',
-      // controller: 'GardensController',
-      // controllerAs: 'homeCntrl'
+      controller: 'GardensController',
+      controllerAs: 'gc'
     })
-    // .state('map', {
-    //   url: '/map',
-    //   templateUrl: 'app/public/templates/map.html',
-    //   controller: 'MapsController',
-    //   controllerAs: 'mc'
-    // })
-    // .state('gardens-index', {
-    //   url: '/gardens',
-    //   templateUrl: 'app/public/templates/gardens-index.html',
-    //   controller: 'HazardsController',
-    //   controllerAs: 'hc'
-    // })
-
-    // .state('gardens-show', {
-    //   url: '/gardens/:gardenId',
-    //   templateUrl: '/app/public/templates/gardens-show.html',
-    //   controller: 'ShowController',
-    //   controllerAs: 'sc'
-    // })
-
 
 }

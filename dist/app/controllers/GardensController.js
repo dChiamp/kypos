@@ -1,6 +1,6 @@
-app.controller('GardensController', GardensController);
+app.controller('GardensController', GardensController)
 
-// GardensController.$inject = ['$scope', '$http', '$stateParams'];
+GardensController.$inject = ['$scope', '$http', '$stateParams'];
 
 function GardensController ($scope, $http) {
   var vm = this;
@@ -23,7 +23,6 @@ function GardensController ($scope, $http) {
         vm.all = response.data;
       })
   }
-
 
   console.log("garden cntrl")
 
