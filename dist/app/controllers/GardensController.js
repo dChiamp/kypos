@@ -1,6 +1,6 @@
 app.controller('GardensController', GardensController);
 
-GardensController.$inject = ['$scope', '$http', '$stateParams'];
+// GardensController.$inject = ['$scope', '$http', '$stateParams'];
 
 function GardensController ($scope, $http) {
   var vm = this;
@@ -17,7 +17,7 @@ function GardensController ($scope, $http) {
 
   function getGardens() {
     $http
-      .get('api/gardens')
+      .get('/api/gardens')
       .then(function(response) {
         console.log("getGardens: ", response.data)
         vm.all = response.data;
