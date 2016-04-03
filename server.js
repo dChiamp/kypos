@@ -5,6 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/kypos');
+
+process.on('exit', function(){ 
+  mongoose.disconnect();
+});
 
 var routes = require('./config/routes');
 // var routes = require('./routes/index');
