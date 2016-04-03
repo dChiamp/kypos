@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="kypos">
+<head>
+  <meta charset="UTF-8">
+  <title>KYPOS</title>
+ <script type="text/javascript"src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWwE3hclrlFwCwKizCODl_0UflfLa31-c"></script>
+  <!-- angular -->
+   <script src="/bower_components/angular/angular.js"></script> 
+
+  <!-- local -->
+
+  <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap-css-only/css/bootstrap.css">
+
+   <link rel="stylesheet" type="text/css" href="/app/public/stylesheets/style.css">
+
+  <script src="/bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
+  
+  <!-- google maps  -->
+  <script src='/bower_components/lodash/dist/lodash.min.js'></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  
+  <script src='/bower_components/angular-simple-logger/dist/angular-simple-logger.js'></script>
+  <script src='/bower_components/angular-google-maps/dist/angular-google-maps.js'></script>
+  <script type="text/javascript" src="/app/app.js"></script>
+  
+</head>
+
+<body>
+ <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ui-sref="hazards-index">Kypos</a>
+    </div><!-- /.navbar-collapse -->
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
+        <li><a ui-sref="home">Home</a></li>
+      </ul>
+  </div><!-- /.container-fluid -->
+  </nav>
+
+<div ui-view>
+
+</div>
+
+<h1>index test</h1>
+  
+</div>
+</body>
+</html>

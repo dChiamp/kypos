@@ -6,7 +6,7 @@
     "dchiamp <derek.chiampas@gmail.com>"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/dChiamp/mean-template",
+  "homepage": "https://github.com/dChiamp/kypos",
   "moduleType": [],
   "ignore": [
     "**/.*",
@@ -19,6 +19,8 @@
     "angular": "^1.5.3",
     "bootstrap-css-only": "^3.3.6",
     "bootstrap-sass": "bootstrap-sass-official#^3.3.6",
-    "font-awesome": "fontawesome#^4.5.0"
+    "font-awesome": "fontawesome#^4.5.0",
+    "angularjs-geolocation": "^0.1.1",
+    "angular-google-maps": "^2.3.2"
   }
 }

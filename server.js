@@ -21,7 +21,7 @@ var app = express();
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+// app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -41,15 +41,11 @@ app.use(routes);
 // error handlers
 // angular routes
 
-app.get('/', function(req,res){
-  res.render('index');
+app.get('*', function(req, res){
+  // res.render('index');
+  console.log("HIT!")
+  res.sendFile(__dirname + '/views/index.html')
 })
-
-// app.get('*', function(req, res){
-//   // res.render('index');
-//   console.log("HIT!")
-//   // res.sendFile(__dirname + '/views/index.html')
-// })
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
