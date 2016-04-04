@@ -69,8 +69,8 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider, $ht
      .state('garden-show', {
       url: '/gardens/:id',
       templateUrl: '/app/public/templates/gardens-show.html',
-      controller: 'ShowController',
-      controllerAs: 'sc'
+      controller: 'GardensController',
+      controllerAs: 'gc'
     })
 
 

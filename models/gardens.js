@@ -4,6 +4,7 @@ var mongoose = require('mongoose')
 var GardenSchema = new Schema({
   joinDate: { type: Date, default: Date.now },
   address: String,
+  name: String,
   description: String,
   coords: {
       latitude: Number,

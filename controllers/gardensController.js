@@ -14,26 +14,26 @@ var gardensController = {
   },
   markGarden: function (req, res) {
     var address = req.body.address;
-    var descritption = req.body.descritption;
+    var description = req.body.description;
     // need lat and long from map
     // can i do this? 
     var coords = {latitidude: req.body.latitidude, 
                   longitude: req.body.longitude };
 
-    Garden.create({ descritption: descritption, descritption: address, coords: coords}, 
+    Garden.create({ description: description, description: address, coords: coords}, 
     function(err, newGarden) { 
       err ? console.log(err) : res.json(newGarden);
     })
   },
   newGarden: function (req, res) {
     var address = req.body.address;
-    var descritption = req.body.descritption;
+    var description = req.body.description;
     // need lat and long from map
     // can i do this? 
     // var coords = {latitidude: req.body.latitidude, 
     //               longitude: req.body.longitude };
 
-    Garden.create({ descritption: descritption, address: address}, 
+    Garden.create({ description: description, address: address}, 
     function(err, newGarden) { 
       err ? console.log(err) : res.json(newGarden);
     })
@@ -41,12 +41,15 @@ var gardensController = {
   editGarden: function (req, res) {
     var id = req.params.id;
     var address = req.body.address;
-    var descritption = req.body.descritption;
+    var description = req.body.description;
+    var name = req.body.name;
     // user should NOT be able to edit hazard location
     Garden.findById({_id: id}, function(err, garden) {
-      err ? cosnole.log(err) : res.json(garden)
+      // err ? cosnole.log(err) : res.json(garden)
+      console.log(err)
       if (address) garden.address = address;
-      if (descritption) garden.descritption = descritption;
+      if (description) garden.description = description;
+      if (name) garden.name = name;
       garden.save(function(err, data){
         err ? console.log(err) : res.json(data)
       });

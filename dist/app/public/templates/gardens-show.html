@@ -1,5 +1,34 @@
-<div ng-init="getGarden()">
+<div ng-init="gc.getGarden()">
   
   <h1>Show Page!</h1>
-  {{garden.description}}
+<div> 
+  <ul>
+    <li> Name: {{garden.name}} </li>
+    <li> Address: {{garden.address}} </li>
+    <li> Description: {{garden.description}} </li>
+    <li> lat: {{garden.coords.latitude}} </li>
+    <!-- <button ng-click="hazards.$remove(hazard)"> Fixed! </button> -->
+    <li> <a ng-href="/gardens/{{garden._id}}" > link </a> </li>
+   <!--   <button class='delete' ng-click="gc.deleteGarden(garden)"> Delete</button> -->
+  </ul>
 </div>
+
+<hr>
+<a href="#" ng-click="gc.showEditForm=true" ng-hide="gc.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Garden</a>
+
+<form ng-show="gc.showEditForm" ng-submit="gc.updateGarden(garden)">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="name"
+      ng-model="gc.newGarden.name">
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Address"
+      ng-model="gc.newGarden.address">
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Description"
+      ng-model="gc.newGarden.description">
+  </div>
+  <input type="submit" value="Edit Garden" class="btn btn-info">&nbsp;
+  <button ng-click="gc.showEditForm=false" class="btn btn-default">Cancel</button>
+</form>

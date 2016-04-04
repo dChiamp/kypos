@@ -10,7 +10,8 @@ var gardens = [
   {
   markedOn: "" ,
   address: " 321 market st",
-  description: "mystikos kypos",
+  name: "mystikos kypos",
+  description: "a very special secret place",
   coords: {
       latitude: 37.813869426495536,
       longitude: -122.27572917938232
@@ -19,7 +20,8 @@ var gardens = [
   {
   markedOn: "",
   address: "123 main st",
-  description: "The Garden of the Hesperides",
+  name: "The Garden of the Hesperides",
+  description: "Beware of the golden apples",
   coords: {
       latitude: 37.791472830809646,
       longitude: -122.39846706390381

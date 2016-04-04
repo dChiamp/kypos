@@ -16,7 +16,7 @@ router.route('/api/gardens')
 router.route('/api/gardens/:id')
   .get(gardensController.showGarden)
   .post(gardensController.markGarden) //CREATE
-  .put(gardensController.editGarden)
+  .put(gardensController.editGarden) //update 
   .delete(gardensController.deleteGarden)
 
 // user jwt auth
