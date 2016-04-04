@@ -48,7 +48,6 @@ function MapController ($http, $scope, geolocation, $q) {
     // var mapCenter = $scope.coords
     console.log($scope.coords)
     // return mapCenter;
-    // return $scope.coords
   // })
 
 
