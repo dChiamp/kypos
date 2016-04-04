@@ -22,8 +22,8 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider, $ht
     .state('home', {
       url: '/',
       templateUrl: 'app/public/templates/home.html',
-      controller: 'GardensController',
-      controllerAs: 'gc'
+      controller: 'HomeController',
+      controllerAs: 'hc'
     })
     .state('signup', {
       url: '/signup',
