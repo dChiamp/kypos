@@ -6,6 +6,7 @@ function MapController ($http, $scope, geolocation, $q) {
 
   var vm = this;
   vm.all = [];
+  $scope.gardenMarkersCoords = [];
 
   vm.getGardens = getGardens;
 
@@ -18,19 +19,30 @@ function MapController ($http, $scope, geolocation, $q) {
     $http
       .get('/api/gardens')
       .then(function(response) {
-        console.log("all gardens: ", response.data);
+        for (i=0; i < response.data.length; i++) {
+          // console.log("all gardens: ", response.data[i].coords);
+          $scope.gardenMarkersCoords.push(response.data[i].coords, "id");
+          console.log('gardenMarkerCoordsArrayy:', $scope.gardenMarkersCoords);
+        }
         // vm.all = response.data;
         // vm.all.push(response.data);
-        $scope.marker = response.data;
+        // $scope.marker = response.data;
         // resolve promise
+        // console.log('vm.all:', vm.all)
       })
   }
-  // $scope.map = { center: { latitude: 37.7904602, longitude: -122.4006261 }, zoom: 15 };
+
+  $scope.testMarker = [
+                        { latitude: 37.7904602, 
+                        longitude: -122.4006261,
+                        id: "" },
+
+                      ]
 
   // need to bind the marker data from db to $scope
   // map is rendering before this is executed 
-  $scope.markers = vm.all;
-  console.log($scope.markers)
+  // $scope.markers = vm.all;
+  // console.log($scope.markers)
 
   function addGardenFromMap (marker) {
     $http
@@ -46,11 +58,14 @@ function MapController ($http, $scope, geolocation, $q) {
   geolocation.getLocation().then(function(data){
     $scope.coords = {latitude:data.coords.latitude, longitude:data.coords.longitude};
     // var mapCenter = $scope.coords
-    console.log($scope.coords)
+    // console.log($scope.coords)
     // return mapCenter;
-  // })
+    $scope.map = { center: $scope.coords,
+                   zoom: 16 };
+  })
 
-
+  // $scope.coords = { latitude: 37.7904602, longitude: -122.4006261 }
+/*
     angular.extend($scope, {
         map: {
             // center: {
@@ -91,7 +106,7 @@ function MapController ($http, $scope, geolocation, $q) {
     });
 
   })
-
+*/
     
   $scope.windowOptions = {visible: false};
 
@@ -99,7 +114,7 @@ function MapController ($http, $scope, geolocation, $q) {
     $scope.windowOptions.visible = !$scope.windowOptions.visible;
   }
 
-  $scope.title = "window title!"
+  // $scope.title = "window title!"
 
   console.log("maps controller loaded");
 

@@ -14,7 +14,8 @@ var gardens = [
   description: "a very special secret place",
   coords: {
       latitude: 37.813869426495536,
-      longitude: -122.27572917938232
+      longitude: -122.27572917938232,
+      id: 0
     }
   },
   {
@@ -24,7 +25,8 @@ var gardens = [
   description: "Beware of the golden apples",
   coords: {
       latitude: 37.791472830809646,
-      longitude: -122.39846706390381
+      longitude: -122.39846706390381,
+      id: 1
     }
   }
 ]

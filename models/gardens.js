@@ -8,7 +8,8 @@ var GardenSchema = new Schema({
   description: String,
   coords: {
       latitude: Number,
-      longitude: Number
+      longitude: Number,
+      id: Number
     }
 })
 
