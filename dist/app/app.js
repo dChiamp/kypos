@@ -60,6 +60,19 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider, $ht
         loginRequired: loginRequired
       }
     })
+    .state('gardens-index', {
+      url: '/gardens',
+      templateUrl: 'app/public/templates/gardens-index.html',
+      controller: 'GardensController',
+      controllerAs: 'gc'
+    })
+     .state('garden-show', {
+      url: '/gardens/:id',
+      templateUrl: '/app/public/templates/gardens-show.html',
+      controller: 'ShowController',
+      controllerAs: 'sc'
+    })
+
 
     // satellizer helper functions
 
