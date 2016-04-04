@@ -31,7 +31,7 @@ function GardensController ($scope, $http, $stateParams) {
     $http
       .get('/api/gardens/' + currentId)
       .then(function(response) {
-        console.log("garden: ", response.data);
+        console.log("show garden: ", response.data);
         // inject vm 
         // vm.all = response.data;
         $scope.garden = response.data
@@ -57,14 +57,14 @@ function GardensController ($scope, $http, $stateParams) {
         vm.all.splice(index, 1);
       })
   }
-
+// something is up with this shit
     function updateGarden(garden) {
     console.log("after click on update: ", garden)
       $http
         .put('/api/gardens/' + garden._id)
         .then(function (response) {
             // vm.garden = response.data;
-            console.log(response.data)
+            console.log("update response from server: ", response.data)
         })
   }
 

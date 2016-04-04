@@ -39,6 +39,7 @@ var gardensController = {
     })
   },
   editGarden: function (req, res) {
+    console.log("server garden id: ", id)
     var id = req.params.id;
     var address = req.body.address;
     var description = req.body.description;
@@ -52,6 +53,7 @@ var gardensController = {
       if (name) garden.name = name;
       garden.save(function(err, data){
         err ? console.log(err) : res.json(data)
+        console.log("server side garden update info: ", data);
       });
     });
   },
