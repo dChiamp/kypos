@@ -2,7 +2,7 @@ var app = angular
   .module('kypos', ['ui.router', 'auth0', 'satellizer','angular-storage', 'angular-jwt', 'uiGmapgoogle-maps', 'geolocation'])
 
 
-app.service('Account', Account)
+// app.service('Account', Account)
 app.config(configRoutes)
 
 
@@ -191,6 +191,8 @@ app.controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
 // Services //
 //////////////
 
+/*
+
 Account.$inject = ["$http", "$q", "$auth"]; // minification protection
 function Account($http, $q, $auth) {
   var self = this;
@@ -284,3 +286,4 @@ function Account($http, $q, $auth) {
   }
 
 }
+*/
