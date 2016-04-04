@@ -61,7 +61,7 @@ function GardensController ($scope, $http, $stateParams) {
     function updateGarden(garden) {
     console.log("after click on update: ", garden)
       $http
-        .put('/api/gardens/' + garden._id)
+        .put('/api/gardens/' + garden._id, garden)
         .then(function (response) {
             // vm.garden = response.data;
             console.log("update response from server: ", response.data)
