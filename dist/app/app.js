@@ -1,7 +1,7 @@
 var app = angular
   .module('kypos', ['ui.router', 'auth0', 'satellizer','angular-storage', 'angular-jwt', 'uiGmapgoogle-maps', 'geolocation'])
 
-
+/*
 // app.service('Account', Account)
 app.config(configRoutes)
 
@@ -107,6 +107,7 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider, $ht
 
 }
 
+*/
     
     // AUTH0
     /* for production
