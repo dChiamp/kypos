@@ -1,5 +1,5 @@
 var app = angular
-  .module('kypos', ['ui.router', 'auth0', 'satellizer','angular-storage', 'angular-jwt'])
+  .module('kypos', ['ui.router', 'auth0', 'satellizer','angular-storage', 'angular-jwt', 'uiGmapgoogle-maps', 'geolocation'])
 
 
 app.service('Account', Account)
@@ -66,11 +66,20 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider, $ht
       controller: 'GardensController',
       controllerAs: 'gc'
     })
-     .state('garden-show', {
+    .state('garden-show', {
       url: '/gardens/:id',
       templateUrl: '/app/public/templates/gardens-show.html',
       controller: 'GardensController',
       controllerAs: 'gc'
+    })
+    .state('map', {
+      url: '/map',
+      templateUrl: 'app/public/templates/map.html',
+      controller: 'MapController',
+      controllerAs: 'mc',
+      resolve: {
+        loginRequired: loginRequired
+      }
     })
 
 

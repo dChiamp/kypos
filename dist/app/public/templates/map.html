@@ -1,0 +1,18 @@
+<h1>Find a Garden</h1>
+<!-- <div ng-controller="mapsController as mc"> -->
+<div>
+    <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" events="map.events">
+     <!--    <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id"></ui-gmap-marker> -->
+
+        <ui-gmap-marker ng-repeat="marker in map.markers" coords="marker.coords" icon="marker.icon" idkey="marker.id">
+          <ui-gmap-window options="windowOptions" closeClick="closeClick()"templateUrl="templates/map-window.html">
+            <div>
+<!--               <p> Type of Hazard: <b> {{marker.hazard}} </b> </p>
+              <a ng-href="/potholes/{{marker.id}}"> Edit details </a>
+              <button ng-click="removePin(marker)"> Delete </button> -->
+            </div>
+
+          </ui-gmap-window>
+        </ui-gmap-marker>
+    </ui-gmap-google-map>
+</div>
