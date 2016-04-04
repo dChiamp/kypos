@@ -17,7 +17,7 @@ var gardensController = {
     var description = req.body.description;
     // need lat and long from map
     // can i do this? 
-    var coords = {latitidude: req.body.latitidude, 
+    var coords = {latitude: req.body.latitude, 
                   longitude: req.body.longitude };
 
     Garden.create({ description: description, description: address, coords: coords}, 
@@ -26,15 +26,16 @@ var gardensController = {
     })
   },
   newGarden: function (req, res) {
+    console.log("marker req.body:", req.body)
+    var name = req.body.name
     var address = req.body.address;
     var description = req.body.description;
-    // need lat and long from map
-    // can i do this? 
-    // var coords = {latitidude: req.body.latitidude, 
-    //               longitude: req.body.longitude };
 
-    Garden.create({ description: description, address: address}, 
+    var coords = req.body.coords;
+
+    Garden.create({name: name, address: address, description: description, coords: coords}, 
     function(err, newGarden) { 
+      console.log(newGarden)
       err ? console.log(err) : res.json(newGarden);
     })
   },

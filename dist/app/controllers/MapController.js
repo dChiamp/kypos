@@ -19,94 +19,73 @@ function MapController ($http, $scope, geolocation, $q) {
     $http
       .get('/api/gardens')
       .then(function(response) {
+        console.log("all gardens: ", response.data);
         for (i=0; i < response.data.length; i++) {
-          // console.log("all gardens: ", response.data[i].coords);
-          $scope.gardenMarkersCoords.push(response.data[i].coords, "id");
+          $scope.gardenMarkersCoords.push(response.data[i].coords);
           console.log('gardenMarkerCoordsArrayy:', $scope.gardenMarkersCoords);
         }
-        // vm.all = response.data;
-        // vm.all.push(response.data);
-        // $scope.marker = response.data;
-        // resolve promise
-        // console.log('vm.all:', vm.all)
       })
   }
 
-  $scope.testMarker = [
-                        { latitude: 37.7904602, 
-                        longitude: -122.4006261,
-                        id: "" },
-
-                      ]
-
-  // need to bind the marker data from db to $scope
-  // map is rendering before this is executed 
-  // $scope.markers = vm.all;
-  // console.log($scope.markers)
 
   function addGardenFromMap (marker) {
     $http
       .post('/api/gardens', marker)
       .then(function(response) {
         console.log("new marker:", marker)
-        $scope.map.markers.push(marker)
       })
   };
-
-
 
   geolocation.getLocation().then(function(data){
     $scope.coords = {latitude:data.coords.latitude, longitude:data.coords.longitude};
     // var mapCenter = $scope.coords
     // console.log($scope.coords)
     // return mapCenter;
-    $scope.map = { center: $scope.coords,
-                   zoom: 16 };
-  })
+    // $scope.map = { center: $scope.coords,
+    //                zoom: 16 };
+    // return $scope.coords;
+  // })
 
-  // $scope.coords = { latitude: 37.7904602, longitude: -122.4006261 }
-/*
-    angular.extend($scope, {
-        map: {
-            // center: {
-            //     latitude: 37.787248,
-            //     longitude: -122.401
-            // },
-            center: $scope.coords, 
-            zoom: 16,
-            markers: [],
-            events: {
-            click: function (map, eventName, originalEventArgs) {
-              var e = originalEventArgs[0];
-              var lat = e.latLng.lat(), 
-                  lon = e.latLng.lng();
-              var marker = {
-                  id: Date.now(),
-                  hazard: "pothole",
-                  address: "",
-                  notes: "",
-                  coords: {
-                      latitude: lat,
-                      longitude: lon
-                    }
-                  };
-              // dont need to push to array anymore bc its saving in db
-              // $scope.map.markers.push(marker);
-              console.log("marker:", map.markers)
-              console.log("markers: ", $scope.map.markers);
-              // what is this apply doing?
-              $scope.$apply();
-              // add marker to db
-              // addHazardFromMap(marker);
-            }
 
-          }
-          
-        }
-    });
+            angular.extend($scope, {
+              map: {
+                  // center: {
+                  //     latitude: 37.787248,
+                  //     longitude: -122.401
+                  // },
+                  center: $scope.coords, 
+                  zoom: 15,
+                  markers: [],
+                  events: {
+                  click: function (map, eventName, originalEventArgs) {
+                    var e = originalEventArgs[0];
+                    var lat = e.latLng.lat(), 
+                        lon = e.latLng.lng();
+                    var marker = {
+                        id: Date.now(),
+                        address: "",
+                        name: "",
+                        description: "",
+                        coords: {
+                            latitude: lat,
+                            longitude: lon,
+                            id: Date.now()
+                          }
+                        };
+                    // dont need to push to array anymore bc its saving in db
+                    $scope.map.markers.push(marker);
+                    console.log("markers: ", $scope.map.markers);
+                    // what is this apply doing?
+                    $scope.$apply();
+                    // add marker to db
+                    addGardenFromMap(marker);
+                  }
 
-  })
-*/
+                }
+                
+              }
+          });
+  }); //end getLocation
     
   $scope.windowOptions = {visible: false};
 

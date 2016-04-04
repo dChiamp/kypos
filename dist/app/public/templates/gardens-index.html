@@ -8,12 +8,25 @@
     <li> <a ng-href="/gardens/{{garden._id}}" > link </a> </li>
    <!--   <button class='delete' ng-click="gc.deleteGarden(garden)"> Delete</button> -->
   </ul>
+  <button class='delete' ng-click="gc.deleteGarden(garden)"> Delete</button>
 </div>
 
-<form ng-submit="gc.addGarden()">
-  <input type="text" ng-model="gc.newGarden.name" placeholder="name">
-  <input type="text" ng-model="gc.newGarden.description" placeholder="description">
-  <input type="text" ng-model="gc.newGarden.address" placeholder="address">
-  <input type="submit">
-</form>
+<br>
+<hr>
 
+<!-- create garden -->
+<a href="#" ng-click="gc.showNewForm=true" ng-hide="gc.showNewForm" class="btn btn-default"><i class="fa fa-pencil"></i> Post Garden</a>
+
+<form ng-show="gc.showNewForm" ng-submit="gc.addGarden()">
+  <div class="form-group">
+   <input type="text" ng-model="gc.newGarden.name" placeholder="name">
+  </div>
+  <div class="form-group">
+    <input type="text" ng-model="gc.newGarden.description" placeholder="description">
+  </div>
+  <div class="form-group">
+   <input type="text" ng-model="gc.newGarden.address" placeholder="address">
+  </div>
+  <input type="submit" value="Post Garden" class="btn btn-info">&nbsp;
+  <button ng-click="gc.showNewForm=false" class="btn btn-default">Cancel</button>
+</form>
