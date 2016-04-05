@@ -1,4 +1,4 @@
-app.controller('GardensController', GardensController)
+app.controller('GardensController', GardensController);
 
 GardensController.$inject = ['$scope', '$http', '$stateParams', 'Account'];
 
@@ -14,6 +14,7 @@ function GardensController ($scope, $http, $stateParams, Account) {
   vm.deleteGarden = deleteGarden;
   vm.updateGarden = updateGarden;
   vm.joinGarden = joinGarden;
+  vm.decodeJwtAndJoinGarden = decodeJwtAndJoinGarden;
 
   getGardens();
 
@@ -59,7 +60,7 @@ function GardensController ($scope, $http, $stateParams, Account) {
       })
   }
 // something is up with this shit
-    function updateGarden(garden) {
+  function updateGarden(garden) {
     console.log("after click on update: ", garden)
       $http
         .put('/api/gardens/' + garden._id, garden)
@@ -73,25 +74,42 @@ function GardensController ($scope, $http, $stateParams, Account) {
   // or get id from uri 
   function joinGarden(garden) {
     console.log("gardenId: ", garden._id)
-
     // get user id. this fnc return user id
     // prob needs a promise
     var userId = Account.getUserIdFromJwt()
-
+    //   .then( 
+    //     function onSuccess(response) {
+    //     console.log("userID:", response)
+    //     return response.data._id;
+    // })
+    console.log(userId);
     // then send req w/ both userid and garden to server
-
     // need to pass userObj in here
     $http
     // .put('/api/join/gardens/' + garden._id, garden)
-
       .put('/api/gardens/' + garden._id, garden)
       .then(function(response) {
         console.log("join res from server:", response.data)
       })
-
     // push user id to gardeners array (server side)
   }
 
+  function decodeJwtAndJoinGarden (garden) {
+    var payload = window.localStorage.satellizer_token;
+    payload = payload.split('.')[1];
+    payload = window.atob(payload);
+    payload = JSON.parse(payload);
+    console.log("useriD:", payload.sub);
+    var userId = payload.sub
+    // need to pass userObj in here
+    $http
+    .put('/api/gardens/' + garden._id + '/users/' + userId)
+      // .put('/api/gardens/' + garden._id, garden)
+      .then(function(response) {
+        console.log("join res from server:", response.data)
+      })
+    // push user id to gardeners array (server side)
+    // return payload;
+ };
   console.log("garden cntrl")
-
 }

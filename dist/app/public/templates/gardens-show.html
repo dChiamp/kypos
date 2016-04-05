@@ -8,6 +8,7 @@
     <li> Description: {{garden.description}} </li>
     <li> lat: {{garden.coords.latitude}} </li>
     <li> gardeners: {{garden.gardeners}} </li>  
+
     <!-- <button ng-click="hazards.$remove(hazard)"> Fixed! </button> -->
   </ul>
 </div>
@@ -32,6 +33,6 @@
   <button ng-click="gc.showEditForm=false" class="btn btn-default">Cancel</button>
 </form>
 
-<button class='delete' ng-click="gc.deleteGarden(garden)"> Delete</button>
+<button class='delete' ng-click="gc.deleteGarden(garden)"> Delete </button>
 
-<button class='submit' ng-click="gc.joinGarden(garden)"> Join This Garden </button>
+<button class='submit' ng-click="gc.decodeJwtAndJoinGarden(garden)"> Join This Garden </button>

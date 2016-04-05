@@ -8,8 +8,11 @@ var gardensController = {
   },
   showGarden: function(req,res) {
     var id = req.params.id;
-    Garden.findById({_id: id}, function(err, data) {
-      err ? console.log(err) : res.json(data);
+    Garden.findById({_id: id})
+      .populate("gardeners")
+      .exec(function(err, data) {
+        err ? console.log(err) : res.json(data);
+        // populate
     })
   },
   markGarden: function (req, res) {
@@ -48,7 +51,8 @@ var gardensController = {
 
     // also get user if there
     // var userId = "5701a8096b81ee265ef564c9"
-    var userId = req.body._id
+    // var userId = req.body._id
+    var userId = req.body
 
     // user should NOT be able to edit hazard location
     Garden.findById({_id: id}, function(err, garden) {
@@ -60,10 +64,11 @@ var gardensController = {
       // push userId to gardeners array?
       if (userId) { garden.gardeners.push(userId) } ;
 
-
-      // if (garden.gardeners.indexOf(userId) === -1 ) {
+      //  if (userId) {
+      //   if (garden.gardeners.indexOf(userId) === -1 ) {
       //   // push user id to user.fav
       //   garden.gardeners.push(userId);
+      //   }
       // }
 
       garden.save(function(err, data){
@@ -79,22 +84,24 @@ var gardensController = {
     })
   },
   joinGarden: function (req, res) {
-    console.log("user id at server from view:", req.body)
-    var id = req.params.id;
-    var userId = req.body._id
-    Garden.findById({_id: id}, function(err, garden) {
+    var gardenId = req.params.gardenId;
+    var userId = req.params.userId
+    // console.log("user id at server from view:", req.body)
+
+    // var userId = req.body
+    Garden.findById({_id: gardenId}, function(err, garden) {
 
       if (userId) {
         if (garden.gardeners.indexOf(userId) === -1 ) {
         // push user id to user.fav
-        garden.gardeners.push(userId);
+          garden.gardeners.push(userId);
+     
+          garden.save(function(err, data){
+            err ? console.log(err) : res.send(data)
+            console.log("server side garden update info: ", data);
+          });
         }
       }
-
-      garden.save(function(err, data){
-        err ? console.log(err) : res.send(data)
-        console.log("server side garden update info: ", data);
-      });
     });
 
   }

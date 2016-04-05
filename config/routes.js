@@ -20,7 +20,7 @@ router.route('/api/gardens/:id')
   .delete(gardensController.deleteGarden)
 
 // is this crazy?:
-router.route('api/join/gardens/:id')
+router.route('/api/gardens/:gardenId/users/:userId')
   .put(gardensController.joinGarden)
 
 // user jwt auth
