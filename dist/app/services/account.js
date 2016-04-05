@@ -1,7 +1,7 @@
 app.service('Account', Account)
 
-Account.$inject = ["$http", "$q", "$auth"]; // minification protection
-function Account($http, $q, $auth) {
+Account.$inject = ["$http", "$q", "$auth", "jwtHelper"]; // minification protection
+function Account($http, $q, $auth, jwtHelper) {
   var self = this;
   self.user = null;
 
@@ -11,6 +11,7 @@ function Account($http, $q, $auth) {
   self.currentUser = currentUser;
   self.getProfile = getProfile;
   self.updateProfile = updateProfile;
+  self.getUserIdFromJwt = getUserIdFromJwt;
 
   function signup(userData) {
     return (
@@ -59,6 +60,7 @@ function Account($http, $q, $auth) {
     if ( !$auth.isAuthenticated() ) { return null; }
 
     var deferred = $q.defer();
+
     getProfile().then(
       function onSuccess(response) {
         self.user = response.data;
@@ -91,5 +93,21 @@ function Account($http, $q, $auth) {
         )
     );
   }
+
+  // decode jwt
+  
+  function getUserIdFromJwt() {
+    // get 
+    getProfile().then( 
+      function onSuccess(response) {
+      console.log("getUserProfile res: ", response)
+      console.log("userID:", response.data._id)
+      // var tokenPayload= jwtHelper.decodeToken(response);
+      // parse payload for id
+      // console.log("decoded token:", tokenPayload)
+    })
+    console.log("userid fnc from account")
+  }
+  
 
 }

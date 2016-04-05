@@ -19,4 +19,12 @@ function ProfileController ($location, Account) {
         vm.showEditForm = false;
       });
   };
+
+  vm.getUserInfo = function() {
+    Account
+      .getUserIdFromJwt()
+    //   .then(function () {
+    //     console.log("ok then");
+    // });
+  }
 }
