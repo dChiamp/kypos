@@ -47,7 +47,8 @@ var gardensController = {
     var name = req.body.name;
 
     // also get user if there
-    // var userId = req.body._id
+    // var userId = "5701a8096b81ee265ef564c9"
+    var userId = req.body._id
 
     // user should NOT be able to edit hazard location
     Garden.findById({_id: id}, function(err, garden) {
@@ -80,15 +81,18 @@ var gardensController = {
   joinGarden: function (req, res) {
     console.log("user id at server from view:", req.body)
     var id = req.params.id;
-    // var userId = req.body
+    var userId = req.body._id
     Garden.findById({_id: id}, function(err, garden) {
-      if (garden.gardeners.indexOf(userId) === -1 ) {
-      // push user id to user.fav
-      garden.gardeners.push(userId);
+
+      if (userId) {
+        if (garden.gardeners.indexOf(userId) === -1 ) {
+        // push user id to user.fav
+        garden.gardeners.push(userId);
+        }
       }
 
       garden.save(function(err, data){
-        err ? console.log(err) : res.json(data)
+        err ? console.log(err) : res.send(data)
         console.log("server side garden update info: ", data);
       });
     });

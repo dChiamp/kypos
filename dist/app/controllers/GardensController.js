@@ -69,30 +69,27 @@ function GardensController ($scope, $http, $stateParams, Account) {
         })
   }
   // needs to update garden with user id
-    // get gardenId from click
-    // pr get id from uri 
+  // get gardenId from click
+  // or get id from uri 
   function joinGarden(garden) {
     console.log("gardenId: ", garden._id)
-    // get user id. 
+
+    // get user id. this fnc return user id
+    // prob needs a promise
     var userId = Account.getUserIdFromJwt()
 
-    /*
-    var userIdGardenIdObj = {
-        uId: userId,
-        gId: gardenId
-    }
-    */
     // then send req w/ both userid and garden to server
 
     // need to pass userObj in here
     $http
-      .put('/api/join/gardens/' + garden._id, garden)
+    // .put('/api/join/gardens/' + garden._id, garden)
+
+      .put('/api/gardens/' + garden._id, garden)
       .then(function(response) {
         console.log("join res from server:", response.data)
       })
 
-    // push user id to gardeners array
-    // 
+    // push user id to gardeners array (server side)
   }
 
   console.log("garden cntrl")
