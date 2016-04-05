@@ -19,6 +19,10 @@ router.route('/api/gardens/:id')
   .put(gardensController.editGarden) //update 
   .delete(gardensController.deleteGarden)
 
+// is this crazy?:
+router.route('api/join/gardens/:id')
+  .put(gardensController.joinGarden)
+
 // user jwt auth
 router.route('/api/users/profile')
   .get(auth.ensureAuthenticated, usersController.showProfile)

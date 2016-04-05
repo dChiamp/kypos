@@ -75,7 +75,6 @@ function Account($http, $q, $auth, jwtHelper) {
     )
     self.user = promise = deferred.promise;
     return promise;
-
   }
 
   function getProfile() {
@@ -97,16 +96,12 @@ function Account($http, $q, $auth, jwtHelper) {
   // decode jwt
   
   function getUserIdFromJwt() {
-    // get 
+    // get profile obj 
     getProfile().then( 
       function onSuccess(response) {
-      console.log("getUserProfile res: ", response)
       console.log("userID:", response.data._id)
-      // var tokenPayload= jwtHelper.decodeToken(response);
-      // parse payload for id
-      // console.log("decoded token:", tokenPayload)
+      return response.data._id;
     })
-    console.log("userid fnc from account")
   }
   
 

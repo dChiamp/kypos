@@ -12,6 +12,7 @@ var gardens = [
   address: " 321 market st",
   name: "mystikos kypos",
   description: "a very special secret place",
+  gardeners: ["5701a8096b81ee265ef564c9"],
   coords: {
       latitude: 37.801472830809646,
       longitude: -122.40846706390381,

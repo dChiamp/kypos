@@ -40,18 +40,31 @@ var gardensController = {
     })
   },
   editGarden: function (req, res) {
-    console.log("server garden id: ", id)
+    console.log("server garden req.body: ", req.body)
     var id = req.params.id;
     var address = req.body.address;
     var description = req.body.description;
     var name = req.body.name;
+
+    // also get user if there
+    // var userId = req.body._id
+
     // user should NOT be able to edit hazard location
     Garden.findById({_id: id}, function(err, garden) {
-      // err ? cosnole.log(err) : res.json(garden)
+      // err ? console.log(err) : res.json(garden)
       console.log(err)
       if (address) garden.address = address;
       if (description) garden.description = description;
       if (name) garden.name = name;
+      // push userId to gardeners array?
+      if (userId) { garden.gardeners.push(userId) } ;
+
+
+      // if (garden.gardeners.indexOf(userId) === -1 ) {
+      //   // push user id to user.fav
+      //   garden.gardeners.push(userId);
+      // }
+
       garden.save(function(err, data){
         err ? console.log(err) : res.json(data)
         console.log("server side garden update info: ", data);
@@ -63,6 +76,23 @@ var gardensController = {
     Garden.remove({_id: id}, function(err, data){
       err ? console.log(err) : res.json(data);
     })
+  },
+  joinGarden: function (req, res) {
+    console.log("user id at server from view:", req.body)
+    var id = req.params.id;
+    // var userId = req.body
+    Garden.findById({_id: id}, function(err, garden) {
+      if (garden.gardeners.indexOf(userId) === -1 ) {
+      // push user id to user.fav
+      garden.gardeners.push(userId);
+      }
+
+      garden.save(function(err, data){
+        err ? console.log(err) : res.json(data)
+        console.log("server side garden update info: ", data);
+      });
+    });
+
   }
 }
 

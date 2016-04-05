@@ -23,8 +23,10 @@ function ProfileController ($location, Account) {
   vm.getUserInfo = function() {
     Account
       .getUserIdFromJwt()
-    //   .then(function () {
-    //     console.log("ok then");
-    // });
+      // why cant i use then here?
+      // .then(
+      //   console.log("from profctrl:")
+      // )
   }
+
 }

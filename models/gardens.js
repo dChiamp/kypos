@@ -6,11 +6,12 @@ var GardenSchema = new Schema({
   address: String,
   name: String,
   description: String,
+  gardeners: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   coords: {
       latitude: Number,
       longitude: Number,
       id: Number
-    }
+    },
 })
 
 var Garden = mongoose.model('Garden', GardenSchema);

@@ -1,8 +1,8 @@
 app.controller('GardensController', GardensController)
 
-GardensController.$inject = ['$scope', '$http', '$stateParams'];
+GardensController.$inject = ['$scope', '$http', '$stateParams', 'Account'];
 
-function GardensController ($scope, $http, $stateParams) {
+function GardensController ($scope, $http, $stateParams, Account) {
   var vm = this;
   vm.all = [];
   console.log("whos on scope: ", vm.all)
@@ -13,6 +13,7 @@ function GardensController ($scope, $http, $stateParams) {
   vm.addGarden = addGarden;
   vm.deleteGarden = deleteGarden;
   vm.updateGarden = updateGarden;
+  vm.joinGarden = joinGarden;
 
   getGardens();
 
@@ -66,6 +67,32 @@ function GardensController ($scope, $http, $stateParams) {
             // vm.garden = response.data;
             console.log("update response from server: ", response.data)
         })
+  }
+  // needs to update garden with user id
+    // get gardenId from click
+    // pr get id from uri 
+  function joinGarden(garden) {
+    console.log("gardenId: ", garden._id)
+    // get user id. 
+    var userId = Account.getUserIdFromJwt()
+
+    /*
+    var userIdGardenIdObj = {
+        uId: userId,
+        gId: gardenId
+    }
+    */
+    // then send req w/ both userid and garden to server
+
+    // need to pass userObj in here
+    $http
+      .put('/api/join/gardens/' + garden._id, garden)
+      .then(function(response) {
+        console.log("join res from server:", response.data)
+      })
+
+    // push user id to gardeners array
+    // 
   }
 
   console.log("garden cntrl")
