@@ -15,7 +15,10 @@ function GardensController ($scope, $http, $stateParams, Account) {
   vm.updateGarden = updateGarden;
   vm.joinGarden = joinGarden;
   vm.decodeJwtAndJoinGarden = decodeJwtAndJoinGarden;
+  vm.seeUserProfile = seeUserProfile;
 
+  vm.userIdFromView = {}
+  
   getGardens();
 
   function getGardens() {
@@ -103,13 +106,23 @@ function GardensController ($scope, $http, $stateParams, Account) {
     var userId = payload.sub
     // need to pass userObj in here
     $http
-    .put('/api/gardens/' + garden._id + '/users/' + userId)
-      // .put('/api/gardens/' + garden._id, garden)
+      .put('/api/gardens/' + garden._id + '/users/' + userId)
+        // .put('/api/gardens/' + garden._id, garden)
       .then(function(response) {
-        console.log("join res from server:", response.data)
-      })
+          console.log("join res from server:", response.data)
+        })
     // push user id to gardeners array (server side)
     // return payload;
  };
+
+ function seeUserProfile (userId) {
+  console.log(userId);
+  $http
+    .get('/api/users/' + userId)
+    .then(function(response) {
+        console.log("join res from server:", response.data)
+    })
+
+ }
   console.log("garden cntrl")
 }

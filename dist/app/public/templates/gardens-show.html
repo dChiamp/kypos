@@ -7,11 +7,19 @@
     <li> Address: {{garden.address}} </li>
     <li> Description: {{garden.description}} </li>
     <li> lat: {{garden.coords.latitude}} </li>
-    <li> gardeners: {{garden.gardeners}} </li>  
-
+    <!-- <li> gardeners: {{garden.gardeners}} </li> -->
+    <li> gardeners: {{garden.gardeners[0].username}} </li>
+    <li> gardeners: {{garden.gardeners[1].username}} </li>
     <!-- <button ng-click="hazards.$remove(hazard)"> Fixed! </button> -->
   </ul>
 </div>
+<!-- {{garden}} -->
+  <div ng-repeat="gardener in garden.gardeners"> 
+    <p>gardeners: {{gardener.username}}  </p>
+    <p>gardeners: {{gardener._id}}  </p>
+
+    <a ng-href='/api/users/{{gardner._id}}'> see user profile</a>
+  </div>  
 
 <hr>
 <a href="#" ng-click="gc.showEditForm=true" ng-hide="gc.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Garden</a>

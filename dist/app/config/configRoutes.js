@@ -75,6 +75,15 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider, $ht
         loginRequired: loginRequired
       }
     })
+    .state('user-show', {
+      url: '/user',
+      templateUrl: 'app/public/templates/user-show.html',
+      controller: 'UserController',
+      controllerAs: 'uc'
+      // resolve: {
+      //   loginRequired: loginRequired
+      // }
+    })
 
 
     // satellizer helper functions

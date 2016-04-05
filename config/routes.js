@@ -21,7 +21,10 @@ router.route('/api/gardens/:id')
 
 // is this crazy?:
 router.route('/api/gardens/:gardenId/users/:userId')
-  .put(gardensController.joinGarden)
+  .put(gardensController.joinGarden);
+
+router.route('/api/profile/:id')
+  .get(auth.ensureAuthenticated, usersController.getUserInfo);
 
 // user jwt auth
 router.route('/api/users/profile')
