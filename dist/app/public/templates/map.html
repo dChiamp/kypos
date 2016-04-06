@@ -5,12 +5,12 @@
 
     <ui-gmap-markers models="gardenMarkersCoords" coords="'self'" idKey="'id'"> 
 
-          <ui-gmap-windows options="windowOptions" closeClick="closeClick()">
-            <div>
-              <p> Garden Address: <b> {{coords}} </b> </p>
-              <button ng-click="removePin(marker)"> Delete </button>
-            </div>
-          </ui-gmap-windows>
+      <ui-gmap-windows options="windowOptions" closeClick="closeClick()">
+        <div>
+          <p> Garden Address: <b> {{coords}} </b> </p>
+          <button ng-click="removePin(marker)"> Delete </button>
+        </div>
+      </ui-gmap-windows>
 
     </ui-gmap-markers>
 
@@ -25,5 +25,5 @@
       </ui-gmap-window>
     </ui-gmap-marker>
 
-    </ui-gmap-google-map>
+  </ui-gmap-google-map>
 </div>
