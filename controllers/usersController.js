@@ -2,11 +2,18 @@ var User = require('../models/users')
 
 var usersController = {
   showProfile: function (req, res) {
-    User.findById(req.user, function (err, user) {
-      // res.send(user.populate('posts'));
-      console.log(user)
-      res.send(user);
+    User.findById(req.user)
+      .populate("gardens")
+      .exec(function(err, user) {
+        err ? console.log(err) : res.json(user);
     })
+
+
+    // , function (err, user) {
+    //   // res.send(user.populate('posts'));
+    //   console.log(user)
+    //   res.send(user);
+    // })
   },
   editProfile: function(req, res) {
     User.findById(req.user, function (err, user) {
@@ -26,7 +33,7 @@ var usersController = {
     User.findById({_id: id})
       .populate("gardens")
       .exec(function(err, user) {
-        err ? console.log(err) : res.json(user)
+        err ? console.log(err) : res.json(user);
     })
   }
 

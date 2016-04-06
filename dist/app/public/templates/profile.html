@@ -7,7 +7,14 @@
   <p><strong>Email:</strong> {{main.currentUser().email}}</p>
   <p><strong>Username:</strong> {{main.currentUser().username}}</p>
   <p><strong>Joined:</strong> {{main.currentUser().created | date:'MMMM dd, yyyy'}}</p>
-  <p><strong>Gardens:</strong> {{main.currentUser().gardens}}</p>
+  <p><strong>Gardens:</strong> {{main.currentUser().gardens[0].name}}</p>
+</div>
+
+<div ng-controller="UserController">
+  <div ng-init="getUser()">
+    
+  </div>
+  
 </div>
 
 <!-- edit profile -->
@@ -85,4 +92,8 @@
     <input type="submit" value="test!" class="btn btn-success">&nbsp;
   </form>
 
+</div>
+
+<div ng-controller="UserController as uc">
+  <button ng-click="uc.doesGardenBelongToUser()" class="btn"> get user info </button>
 </div>
