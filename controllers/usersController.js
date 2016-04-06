@@ -23,10 +23,13 @@ var usersController = {
   },
   getUserInfo: function(req, res) {
     var id = req.params.id;
-    User.findById({_id: id}, function(err, user) {
-      err ? console.log(err) : res.json(user)
+    User.findById({_id: id})
+      .populate("gardens")
+      .exec(function(err, user) {
+        err ? console.log(err) : res.json(user)
     })
   }
+
 }
 
 module.exports = usersController
