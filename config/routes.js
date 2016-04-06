@@ -16,7 +16,8 @@ router.route('/api/gardens')
 
 router.route('/api/gardens/:id')
   .get(gardensController.showGarden)
-  .post(gardensController.markGarden) //CREATE
+  // .post(gardensController.markGarden) //CREATE
+  .post(geocoderController.geocodeAddress)
   .put(gardensController.editGarden) //update 
   .delete(gardensController.deleteGarden)
 
