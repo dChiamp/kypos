@@ -18,6 +18,7 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
   vm.seeUserProfile = seeUserProfile;
   vm.postYourGarden = postYourGarden;
   vm.postYourGardenAddIdToProf = postYourGardenAddIdToProf;
+  vm.doesGardenBelongToUser = doesGardenBelongToUser;
 
 
   vm.userIdFromView = {}
@@ -68,6 +69,28 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
       vm.newGarden = {}
       toastr.success('Garden Added!')
   }
+
+   function postYourGardenAddIdToProf () {
+
+      // var userId = $stateParams.userId
+      // needs to get user id form jwt
+
+      var payload = window.localStorage.satellizer_token;
+      payload = payload.split('.')[1];
+      payload = window.atob(payload);
+      payload = JSON.parse(payload);
+      console.log("useriD:", payload.sub);
+      var userId = payload.sub
+
+      $http
+        .post('/api/users/' + userId + '/gardens', vm.newGarden)
+        .then(function(response) {
+          console.log("new garden:", response.data)
+          vm.all.push(response.data)
+        })
+        vm.newGarden = {}
+        toastr.success('Garden Added!')
+    }
 
   function deleteGarden(garden) {
     $http
@@ -141,27 +164,47 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
 
  }
 
- function postYourGardenAddIdToProf () {
+  // $scope.isEditable = false;
 
-    // var userId = $stateParams.userId
-    // needs to get user id form jwt
+  function doesGardenBelongToUser() {
+    console.log("does this garden beleong to me?")
+    // get garden id
+    var gardenId = $stateParams.id
+    // get user id from jwt
 
+    // make as a helper function
     var payload = window.localStorage.satellizer_token;
     payload = payload.split('.')[1];
     payload = window.atob(payload);
     payload = JSON.parse(payload);
-    console.log("useriD:", payload.sub);
     var userId = payload.sub
+    console.log("useriD:", payload.sub);
+    
+    $scope.isEditable = false;
 
     $http
-      .post('/api/users/' + userId + '/gardens', vm.newGarden)
+      .get('/api/profile/' + userId)
       .then(function(response) {
-        console.log("new garden:", response.data)
-        vm.all.push(response.data)
+        console.log("users gardens: ", response.data.gardens[0]._id)
+        // render json from server
+
+        for (var i = 0; i < response.data.gardens.length; i++ ) {
+          console.log("searching through your gardens")
+
+          var usersGardens = response.data.gardens[i]._id
+
+          // if garden id is in user's gardens
+          if (usersGardens.indexOf(gardenId) !== -1 ) {
+            // then do allow user to edit
+            console.log("yes, garden belongs to user")
+            $scope.isEditable = true;
+          }
+        }
+          
       })
-      vm.newGarden = {}
-      toastr.success('Garden Added!')
+    
   }
+
 
   console.log("garden cntrl")
 }
