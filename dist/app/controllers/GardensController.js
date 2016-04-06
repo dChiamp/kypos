@@ -16,6 +16,7 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
   vm.joinGarden = joinGarden;
   vm.decodeJwtAndJoinGarden = decodeJwtAndJoinGarden;
   vm.seeUserProfile = seeUserProfile;
+  vm.postYourGarden = postYourGarden;
 
   vm.userIdFromView = {}
   
@@ -46,6 +47,18 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
   function addGarden() {
     $http
       .post('/api/gardens', vm.newGarden)
+      .then(function(response) {
+        console.log("new garden:", response.data)
+        vm.all.push(response.data)
+      })
+      vm.newGarden = {}
+      toastr.success('Garden Added!')
+  }
+
+
+  function postYourGarden() {
+    $http
+      .post('/api/garden/create', vm.newGarden)
       .then(function(response) {
         console.log("new garden:", response.data)
         vm.all.push(response.data)

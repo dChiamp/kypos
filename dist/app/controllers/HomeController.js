@@ -8,7 +8,7 @@ function HomeController ($scope, toastr) {
   var vm = this;
   vm.toastTest = toastTest
 
-  function toastTest () {
-    toastr.success('Hello world!');
-  }
+  // function toastTest () {
+  //   toastr.success('Hello world!');
+  // }
 }

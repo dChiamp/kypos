@@ -29,7 +29,7 @@ var gardensController = {
     })
   },
   newGarden: function (req, res) {
-    console.log("marker req.body:", req.bodys)
+    console.log("marker req.body:", req.body)
     var name = req.body.name
     var address = req.body.address;
     var description = req.body.description;
