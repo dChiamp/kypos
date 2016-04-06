@@ -27,7 +27,8 @@ router.route('/api/gardens/:gardenId/users/:userId')
 
 // user's garden
 router.route('/api/users/:userId/gardens') 
-  .post(gardensController.postGarden)
+  // .post(gardensController.postGarden)
+    .post(gardensController.geocodeAndPost)
 
 // user profile show page
 router.route('/api/profile/:id')
