@@ -24,14 +24,18 @@ router.route('/api/gardens/:id')
 router.route('/api/gardens/:gardenId/users/:userId')
   .put(gardensController.joinGarden);
 
-// geocoder
-router.route('/api/garden/create')
-  .post(geocoderController.geocodeAddress)
+// user's garden
+router.route('/api/users/:userId/gardens') 
+  .post(gardensController.postGarden)
 
-
+// user profile show page
 router.route('/api/profile/:id')
   // .get(auth.ensureAuthenticated, usersController.getUserInfo);
   .get(usersController.getUserInfo);
+
+// geocoder
+router.route('/api/garden/create')
+  .post(geocoderController.geocodeAddress)
 
 // user jwt auth
 router.route('/api/users/profile')

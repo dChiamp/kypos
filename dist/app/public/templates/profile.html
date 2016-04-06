@@ -7,6 +7,7 @@
   <p><strong>Email:</strong> {{main.currentUser().email}}</p>
   <p><strong>Username:</strong> {{main.currentUser().username}}</p>
   <p><strong>Joined:</strong> {{main.currentUser().created | date:'MMMM dd, yyyy'}}</p>
+  <p><strong>Gardens:</strong> {{main.currentUser().gardens}}</p>
 </div>
 
 <!-- edit profile -->
@@ -62,12 +63,24 @@
     <button ng-click="gc.showEditForm=false" class="btn btn-danger">Cancel</button>
   </div>
 
+  <h3>Get geocode from address</h3>
   <form ng-submit="gc.postYourGarden()" >
     <div class="form-group">
       <input type="text" ng-model="gc.newGarden.name" placeholder="name">
     </div>
     <div class="form-group">
       <input type="text" ng-model="gc.newGarden.address" placeholder="GEOCODE address">
+    </div>
+    <input type="submit" value="test!" class="btn btn-success">&nbsp;
+  </form>
+
+  <h3> post garden and add its id to your prof</h3>
+    <form ng-submit="gc.postYourGardenAddIdToProf()" >
+    <div class="form-group">
+      <input type="text" ng-model="gc.newGarden.name" placeholder="name">
+    </div>
+    <div class="form-group">
+      <input type="text" ng-model="gc.newGarden.description" placeholder="description">
     </div>
     <input type="submit" value="test!" class="btn btn-success">&nbsp;
   </form>

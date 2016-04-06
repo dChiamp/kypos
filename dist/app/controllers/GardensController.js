@@ -17,6 +17,8 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
   vm.decodeJwtAndJoinGarden = decodeJwtAndJoinGarden;
   vm.seeUserProfile = seeUserProfile;
   vm.postYourGarden = postYourGarden;
+  vm.postYourGardenAddIdToProf = postYourGardenAddIdToProf;
+
 
   vm.userIdFromView = {}
   
@@ -138,5 +140,28 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
     })
 
  }
+
+ function postYourGardenAddIdToProf () {
+
+    // var userId = $stateParams.userId
+    // needs to get user id form jwt
+
+    var payload = window.localStorage.satellizer_token;
+    payload = payload.split('.')[1];
+    payload = window.atob(payload);
+    payload = JSON.parse(payload);
+    console.log("useriD:", payload.sub);
+    var userId = payload.sub
+
+    $http
+      .post('/api/users/' + userId + '/gardens', vm.newGarden)
+      .then(function(response) {
+        console.log("new garden:", response.data)
+        vm.all.push(response.data)
+      })
+      vm.newGarden = {}
+      toastr.success('Garden Added!')
+  }
+
   console.log("garden cntrl")
 }
