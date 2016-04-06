@@ -36,8 +36,8 @@ router.route('/api/profile/:id')
   .get(usersController.getUserInfo);
 
 // geocoder
-router.route('/api/garden/create')
-  .post(geocoderController.geocodeAddress)
+// router.route('/api/garden/create')
+//   .post(geocoderController.geocodeAddress)
 
 // user jwt auth
 router.route('/api/users/profile')

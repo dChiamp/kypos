@@ -107,64 +107,6 @@ var gardensController = {
     });
 
   },
-  postGarden: function (req, res) {
-    // user can only add garden from their profile page?
-    // or i can get the uid from jwt
-    var userId = req.params.userId
-    var name = req.body.name
-    var description = req.body.description;
-    // var address = req.body.address;
-    // create garder
-    Garden.create({name: name, description: description}, 
-      function(err, newGarden) { 
-        // err ? console.log(err) : res.json(newGarden);
-        console.log("new garden: ", newGarden)
-        console.log(err)
-
-        // get new garden id
-        var newGardenId = newGarden._id
-        console.log("newGardenId:", newGarden._id)
-
-        // find User and update 
-        User.findById({_id: userId}, function(err, user){
-          console.log("user:", user)
-          console.log("user gardens:", user.gardens)
-          // push new garden id to user's garden array
-          user.gardens.push(newGardenId)
-
-          user.save(function(err) {
-            res.send(user.populate('gardens'));
-          });
-        })
-
-    })
-
-  },
-  geocodeAddress: function (req, res) {
-    var addy = req.body.address
-    var name = req.body.name
-    // var address = req.body.address;
-    var description = req.body.description;
-
-    geocoder.geocode(addy, function ( err, data ) {
-      console.log("results ARRAYYYYYYY:", data.results[0].geometry.location.lng)
-      var lat = data.results[0].geometry.location.lat
-      var long = data.results[0].geometry.location.lng
-
-      var coords = {
-                  latitude: lat,
-                  longitude: long,
-                  id: Date.now()
-      }
-
-      Garden.create({name: name, /*address: address, description: description, */ coords: coords}, 
-
-      function(err, newGarden) { 
-        console.log(newGarden)
-        err ? console.log(err) : res.json(newGarden);
-      })
-    }); 
-  },
   geocodeAndPost: function (req, res) {
     console.log("geocodeAndPost HITT")
     
@@ -207,8 +149,6 @@ var gardensController = {
           })
       })
     })
-
-    
   }
   
 }
