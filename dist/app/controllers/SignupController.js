@@ -1,7 +1,7 @@
 app.controller('SignupController', SignupController)
 
-SignupController.$inject = ["$location", "Account"]; // minification protection
-function SignupController ($location, Account) {
+// SignupController.$inject = ["$location", "Account"]; // minification protection
+function SignupController ($location, Account, toastr) {
   var vm = this;
   vm.new_user = {}; // form data
 
@@ -12,6 +12,7 @@ function SignupController ($location, Account) {
         function (response) {
           vm.new_user = {}; // clear sign up form
           $location.path('/profile'); // redirect to '/profile'
+          toastr.success('Welcome to Kypos')
         }
       );
   };

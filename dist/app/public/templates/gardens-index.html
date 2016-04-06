@@ -3,19 +3,19 @@
     <li> Name: {{garden.name}} </li>
     <li> Address: {{garden.address}} </li>
     <li> Description: {{garden.description}} </li>
-    <li> lat: {{garden.coords.latitude}} </li>
+    <!-- <li> lat: {{garden.coords.latitude}} </li> -->
     <!-- <button ng-click="hazards.$remove(hazard)"> Fixed! </button> -->
     <li> <a ng-href="/gardens/{{garden._id}}" > link </a> </li>
    <!--   <button class='delete' ng-click="gc.deleteGarden(garden)"> Delete</button> -->
   </ul>
-  <button class='delete' ng-click="gc.deleteGarden(garden)"> Delete</button>
+  <button class='btn btn-danger' ng-click="gc.deleteGarden(garden)"> Delete</button>
 </div>
 
 <br>
 <hr>
 
 <!-- create garden -->
-<a href="#" ng-click="gc.showNewForm=true" ng-hide="gc.showNewForm" class="btn btn-default"><i class="fa fa-pencil"></i> Post Garden</a>
+<a href="#" ng-click="gc.showNewForm=true" ng-hide="gc.showNewForm" class="btn btn-success"><i class="fa fa-pencil"></i> Post Garden</a>
 
 <form ng-show="gc.showNewForm" ng-submit="gc.addGarden()">
   <div class="form-group">

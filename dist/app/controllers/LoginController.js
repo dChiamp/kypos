@@ -13,8 +13,8 @@ app.controller('LoginController', LoginController);
 
 // }
 
-LoginController.$inject = ["$location", "Account"]; // minification protection
-function LoginController ($location, Account) {
+// LoginController.$inject = ["$location", "Account"]; // minification protection
+function LoginController ($scope, $location, Account, toastr) {
   var vm = this;
   vm.new_user = {}; // form data
 
@@ -24,6 +24,7 @@ function LoginController ($location, Account) {
       .then(function(){
         vm.new_user = {}; // clear sign up form
         $location.path('/profile'); // redirect to '/profile'
+        toastr.success('Logged In!');
       })
   };
 }

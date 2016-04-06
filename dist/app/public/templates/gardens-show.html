@@ -2,28 +2,28 @@
   
   <h1>Garden Details</h1>
 <div> 
+    <h3> Name: {{garden.name}} </h3>
   <ul>
-    <li> Name: {{garden.name}} </li>
     <li> Address: {{garden.address}} </li>
     <li> Description: {{garden.description}} </li>
     <li> lat: {{garden.coords.latitude}} </li>
     <!-- <li> gardeners: {{garden.gardeners}} </li> -->
-    <li> gardeners: {{garden.gardeners[0].username}} </li>
-    <li> gardeners: {{garden.gardeners[1].username}} </li>
+    <!-- <li> gardeners: {{garden.gardeners[0].username}} </li> -->
+    <!-- <li> gardeners: {{garden.gardeners[1].username}} </li> -->
     <!-- <button ng-click="hazards.$remove(hazard)"> Fixed! </button> -->
   </ul>
-</div>
-<!-- {{garden}} -->
+    <p>gardeners: </p>
   <div ng-repeat="gardener in garden.gardeners"> 
-    <p>gardeners: {{gardener.username}}  </p>
-    <p>gardeners: {{gardener._id}}  </p>
-
-    <a ng-href='/user/{{gardener._id}}'> see user profile</a>
+    <!-- <p> name: {{gardener.username}}  </p> -->
+    <a ng-href='/user/{{gardener._id}}'> <p> {{gardener.username}}  </p> </a>
+    <!-- <p>gardeners: {{gardener._id}}  </p> -->
     <!-- <a ui-sref="user-show"> see user prof </a> -->
   </div>  
+</div>
+<!-- {{garden}} -->
 
 <hr>
-<a href="#" ng-click="gc.showEditForm=true" ng-hide="gc.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Garden</a>
+<a href="#" ng-click="gc.showEditForm=true" ng-hide="gc.showEditForm" class="btn btn-warning"><i class="fa fa-pencil"></i> Edit Garden</a>
 
 <form ng-show="gc.showEditForm" ng-submit="gc.updateGarden(garden)">
   <div class="form-group">
@@ -42,6 +42,5 @@
   <button ng-click="gc.showEditForm=false" class="btn btn-default">Cancel</button>
 </form>
 
-<button class='delete' ng-click="gc.deleteGarden(garden)"> Delete </button>
-
-<button class='submit' ng-click="gc.decodeJwtAndJoinGarden(garden)"> Join This Garden </button>
+<button class='btn btn-info' ng-click="gc.decodeJwtAndJoinGarden(garden)"> Join This Garden </button>
+<button class='btn btn-danger' ng-click="gc.deleteGarden(garden)"> Delete </button>

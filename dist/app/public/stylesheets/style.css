@@ -7,4 +7,9 @@ a {
   color: #00B7FF;
 }
 
+ul
+{
+    list-style-type: none;
+}
+
 .angular-google-map-container { height: 400px; }

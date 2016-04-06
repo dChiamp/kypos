@@ -7,8 +7,8 @@ app.controller('ProfileController', ProfileController);
 // }
 
 
-ProfileController.$inject = ["$location", "Account"]; // minification protection
-function ProfileController ($location, Account) {
+// ProfileController.$inject = ["$location", "Account"]; // minification protection
+function ProfileController ($location, Account, toastr) {
   var vm = this;
   vm.new_profile = {}; // form data
 
@@ -17,6 +17,7 @@ function ProfileController ($location, Account) {
       .updateProfile(vm.new_profile)
       .then(function () {
         vm.showEditForm = false;
+        toastr.success("Profile Updated!")
       });
   };
 

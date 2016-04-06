@@ -9,21 +9,19 @@
    <script src="/bower_components/angular/angular.js"></script> 
 
   <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-  <!-- local styles -->
 
-  <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap-css-only/css/bootstrap.css">
-
-   <link rel="stylesheet" type="text/css" href="/app/public/stylesheets/style.css">
-
-  <script src="/bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
+  <script src="/bower_components/angular-animate/angular-animate.js"></script>
+  
   
   <!-- google maps  -->
+  <script src="/bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
+
   <script src='/bower_components/lodash/dist/lodash.min.js'></script>
 
   <script src='/bower_components/angular-simple-logger/dist/angular-simple-logger.js'></script>
 
+  <script src='/bower_components/angular-google-maps/dist/angular-google-maps.js'></script>
   <!-- satellizer -->
-   <!-- satellizer -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/satellizer/0.13.4/satellizer.min.js"></script>
 
 
@@ -39,10 +37,12 @@
 
   <script src="//cdn.auth0.com/w2/auth0-angular-4.js"> </script>
 
-  <!-- Setting the right viewport -->
+  <!--  styles -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-  <script src='/bower_components/angular-google-maps/dist/angular-google-maps.js'></script>
+  <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap-css-only/css/bootstrap.css">
+
+   <link rel="stylesheet" type="text/css" href="/app/public/stylesheets/style.css">
   <!-- local scripts-->
   <script type="text/javascript" src="/app/app.js"></script>
   <script type="text/javascript" src="/app/services/account.js"></script>
@@ -57,6 +57,10 @@
   <script type="text/javascript" src="/app/controllers/MainController.js"></script>
   <script type="text/javascript" src="/app/controllers/MapController.js"></script>
   <script type="text/javascript" src="/app/controllers/UserController.js"></script>
+
+<script src="https://npmcdn.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+
+<link rel="stylesheet" href="https://npmcdn.com/angular-toastr/dist/angular-toastr.css" />
 </head>
 
 <body>

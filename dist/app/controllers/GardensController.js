@@ -1,8 +1,8 @@
 app.controller('GardensController', GardensController);
 
-GardensController.$inject = ['$scope', '$http', '$stateParams', 'Account'];
+// GardensController.$inject = ['$scope', '$http', '$stateParams', 'Account'];
 
-function GardensController ($scope, $http, $stateParams, Account) {
+function GardensController ($scope, $http, $stateParams, Account, toastr) {
   var vm = this;
   vm.all = [];
   console.log("whos on scope: ", vm.all)
@@ -51,6 +51,7 @@ function GardensController ($scope, $http, $stateParams, Account) {
         vm.all.push(response.data)
       })
       vm.newGarden = {}
+      toastr.success('Garden Added!')
   }
 
   function deleteGarden(garden) {
