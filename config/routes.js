@@ -24,7 +24,8 @@ router.route('/api/gardens/:gardenId/users/:userId')
   .put(gardensController.joinGarden);
 
 router.route('/api/profile/:id')
-  .get(auth.ensureAuthenticated, usersController.getUserInfo);
+  // .get(auth.ensureAuthenticated, usersController.getUserInfo);
+  .get(usersController.getUserInfo);
 
 // user jwt auth
 router.route('/api/users/profile')

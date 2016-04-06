@@ -1,20 +1,20 @@
 app.controller('UserController', UserController)
 
-function UserController ($scope, $http) {
+function UserController ($scope, $http, $stateParams) {
   var vm = this;
   vm.all = [];
 
-  vm.getUser = getGardens;
+  vm.getUser = getUser;
   
-  getUser();
+  // getUser();
 
   function getUser() {
     var userId = $stateParams.id;
     $http
-      .get('/api/users/' + userId)
+      .get('/api/profile/' + userId)
       .then(function(response) {
         console.log("getUser: ", response.data)
-        vm.all = response.data;
+        $scope.user = response.data;
       })
   }
 }

@@ -15,13 +15,13 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider, $ht
   $stateProvider
     .state('home', {
       url: '/',
-      templateUrl: 'app/public/templates/home.html',
+      templateUrl: '/app/public/templates/home.html',
       controller: 'HomeController',
       controllerAs: 'hc'
     })
     .state('signup', {
       url: '/signup',
-      templateUrl: 'app/public/templates/signup.html',
+      templateUrl: '/app/public/templates/signup.html',
       controller: 'SignupController',
       controllerAs: 'sc',
       resolve: {
@@ -30,7 +30,7 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider, $ht
     })
     .state('login', {
       url: '/login',
-      templateUrl: 'app/public/templates/login.html',
+      templateUrl: '/app/public/templates/login.html',
       controller: 'LoginController',
       controllerAs: 'lc',
       resolve: {
@@ -47,7 +47,7 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider, $ht
     })
     .state('profile', {
       url: '/profile',
-      templateUrl: 'app/public/templates/profile.html',
+      templateUrl: '/app/public/templates/profile.html',
       controller: 'ProfileController',
       controllerAs: 'profile',
       resolve: {
@@ -56,7 +56,7 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider, $ht
     })
     .state('gardens-index', {
       url: '/gardens',
-      templateUrl: 'app/public/templates/gardens-index.html',
+      templateUrl: '/app/public/templates/gardens-index.html',
       controller: 'GardensController',
       controllerAs: 'gc'
     })
@@ -68,7 +68,7 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider, $ht
     })
     .state('map', {
       url: '/map',
-      templateUrl: 'app/public/templates/map.html',
+      templateUrl: '/app/public/templates/map.html',
       controller: 'MapController',
       controllerAs: 'mc',
       resolve: {
@@ -76,8 +76,8 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider, $ht
       }
     })
     .state('user-show', {
-      url: '/user',
-      templateUrl: 'app/public/templates/user-show.html',
+      url: '/user/:id',
+      templateUrl: '/app/public/templates/user-show.html',
       controller: 'UserController',
       controllerAs: 'uc'
       // resolve: {
