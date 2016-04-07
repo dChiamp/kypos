@@ -7,8 +7,8 @@
     <ui-gmap-marker ng-repeat="marker in gardenMarkersObj" coords="marker.coords" icon="marker.icon" idkey="marker.coords.id" gMarker="'id'">
       <ui-gmap-window options="windowOptions" closeClick="closeClick()" gMarker="marker.id" idkey="marker.coords.id">
         <div>
-          <p>  Name: <b> {{marker.name}} </b> </p>
-          <p>  Address: <b> {{marker.name}} </b> </p>
+          <p>  Name: <a ng-href="/gardens/{{marker._id}}"> <b> {{marker.name}} </b> </a> </p>
+          <p>  Address: <b> {{marker.address}} </b> </p>
         </div>
       </ui-gmap-window>
     </ui-gmap-marker>
@@ -17,7 +17,9 @@
 </div>
 
 
-<div ng-repeat="marker in gardenMarkersObj">
+<!-- <div ng-repeat="marker in gardenMarkersObj">
+{{marker}}
 {{marker.coords.id}}
   
 </div>
+ -->
