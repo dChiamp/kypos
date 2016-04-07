@@ -2,10 +2,25 @@ var Post = require('../models/posts')
 
 var postsController = {
   postIndex: function (req, res) {
+    var gardenId = req.params.gardenId;
     Post.find({})
       .populate("author")
       .exec(function (err, allPosts) {
+        /*
+        console.log("allposts garden Ids: ", allPosts[0].garden)
+        for (var i = 0; i < allPosts.length; i++ ) {
+          var postObj = allPosts[i]
+          var postGardenId = postObj.garden;
+            console.log("post GARDEN ID:", postGardenId);
+            console.log("GARDEN ID:", gardenId)
+          if (gardenId == postGardenId){
+            console.log("they match!")
+            res.json(postObj);
+          }
+        }
+        */
         err ? console.log(err) : res.json(allPosts);
+        // console.log(err);
       })
   },
   newPost: function (req, res) {
@@ -24,9 +39,23 @@ var postsController = {
     })
   },
   deletePost: function (req, res) {
-    var postId  = req.params.id;
-    Post.remove({_id: postId}, function(err, data){
-      err ? console.log(err) : res.json(data);
+    console.log("hitting delete route")
+    var postId  = req.params.postId;
+    var userId = req.params.userId;
+    console.log("User ID:", userId)
+    // find post.author._id
+    Post.findById({_id: postId}, function(err, data) {
+      console.log("POST AUTHOR: ", data.author[0]);
+      var postAuthor = data.author[0]
+      // matches user id?
+      if(userId == postAuthor) {
+        console.log("after IF")
+        // if yes delete post
+        Post.remove({_id: postId}, function(err, data) {
+          err ? console.log(err) : res.json(data);
+          console.log("post deleted")
+        })
+      }
     })
   }
 }

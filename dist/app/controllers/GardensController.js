@@ -187,7 +187,6 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
       .then(function(response) {
         console.log("users gardens: ", response.data.gardens[0]._id)
         // render json from server
-
         for (var i = 0; i < response.data.gardens.length; i++ ) {
           console.log("searching through your gardens")
 

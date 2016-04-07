@@ -13,15 +13,20 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
 
   getPosts();
   // checkIfPostBelongsGarden();
-
   // gets posts and FIlters for garden match
   function getPosts (cb) {
     var gardenId = $stateParams.id;
-    // console.log("this garden's id:", gardenId)
+    console.log(gardenId)
     $http
-      .get('/api/posts/')
+      // '/api/posts/:gardenId'
+      .get('/api/posts/' + gardenId)
       .then(function(response){
         var allPosts = response.data
+        console.log("RESPNSE of posts:", allPosts)
+        // vm.all = response.data
+
+
+        
         // iterate through all posts to match id
         for(var i = 0; i < response.data.length; i++) {
           console.log("checking if msg belongs to garden...")
@@ -40,21 +45,6 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
       })
   }
 
-
-  // function to check if the id params match the 
-  // referenced gardenId for page 
-// function checkIfPostBelongsGarden () {
-  // get id from url
-  // var post = vm.all
-  // console.log("view model:", vm.all)
-  // get id in post.garden[i]
-  // show if match = true
- // }
-
- // need a promise or a callback
-
-
-
   function isUsersPost () {
     // get user id:
     var payload = window.localStorage.satellizer_token;
@@ -68,14 +58,12 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
     // iterate thru all messages
     // check if author matches current user id
     for(var i = 0; i < vm.all.length; i++) {
-    // console.log("message user id:", vm.all[i].author[0]._id)
-    // $scope.post = vm.all[i];
     var post = vm.all[i];
     $scope.msg = vm.all[i]
     console.log("post object:", post)
     var postUserId = vm.all[i].author[0]._id
       if (postUserId === userId) {
-        console.log("msg belongs 2 this user")
+        // if msg belongs to user, allow delete
         $scope.msg.deletable = true
         // return true;
       }
@@ -83,8 +71,6 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
   }
 
   // in backend, also check that the user id matches the post author
-
-
 
   function newPost() {
     // console.log("new post agular")
@@ -106,11 +92,17 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
       vm.newMessage = {}
   }
 
-
-
   function deletePost(post) {
+    var payload = window.localStorage.satellizer_token;
+    payload = payload.split('.')[1];
+    payload = window.atob(payload);
+    payload = JSON.parse(payload);
+    // console.log("useriD:", payload.sub);
+    var userId = payload.sub
     $http
-      .delete('/api/posts/' + post._id)
+      // .delete('/api/posts/:postId/users/:id', post._id);
+      // .delete('/api/posts/' + post._id)
+      .delete('/api/posts/' + post._id + '/users/' + userId)
       .then(function(response) {
         var index = vm.all.indexOf(post)
         vm.all.splice(index,1);
