@@ -95,14 +95,23 @@ function Account($http, $q, $auth, jwtHelper) {
 
   // decode jwt
   
-  function getUserIdFromJwt() {
-    // get profile obj 
-    getProfile().then( 
-      function onSuccess(response) {
-      console.log("userID:", response.data._id)
-      return response.data._id;
-    })
-  }
+  // function getUserIdFromJwt() {
+  //   // get profile obj 
+  //   getProfile().then( 
+  //     function onSuccess(response) {
+  //     console.log("userID:", response.data._id)
+  //     return response.data._id;
+  //   })
+  // }
   
+  function getUserIdFromJwt() {
+    var payload = window.localStorage.satellizer_token;
+    payload = payload.split('.')[1];
+    payload = window.atob(payload);
+    payload = JSON.parse(payload);
+    var userId = payload.sub
+    console.log("getting id from Account?")
+    return userId
+  }
 
 }

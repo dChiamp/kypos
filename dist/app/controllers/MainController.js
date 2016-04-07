@@ -8,4 +8,11 @@ function MainController (Account) {
    return Account.currentUser();
   }
 
+  vm.getCurrentUserId = function() {
+    console.log(Account.getUserIdFromJwt());
+    return Account.getUserIdFromJwt();
+  }
+
+
+
 }
