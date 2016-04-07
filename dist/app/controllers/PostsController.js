@@ -37,10 +37,10 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
             console.log("msg matchs!")
             console.log("view model:", vm.all)
             // $scope.apply();
-            isUsersPost();
           } else { console.log("not a match")} ;
         }
         */
+            isUsersPost();
       })
   }
 
