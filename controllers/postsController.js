@@ -6,21 +6,22 @@ var postsController = {
     Post.find({})
       .populate("author")
       .exec(function (err, allPosts) {
-        /*
+        var gardensPosts = []
         console.log("allposts garden Ids: ", allPosts[0].garden)
         for (var i = 0; i < allPosts.length; i++ ) {
           var postObj = allPosts[i]
           var postGardenId = postObj.garden;
-            console.log("post GARDEN ID:", postGardenId);
             console.log("GARDEN ID:", gardenId)
+            console.log("post GARDEN ID:", postGardenId);
           if (gardenId == postGardenId){
             console.log("they match!")
-            res.json(postObj);
+            gardensPosts.push(postObj)
+            // res.json(postObj);
           }
         }
-        */
-        err ? console.log(err) : res.json(allPosts);
-        // console.log(err);
+
+        err ? console.log(err) : res.send(gardensPosts);
+        // err ? console.log(err) : res.json(allPosts);
       })
   },
   newPost: function (req, res) {

@@ -23,11 +23,9 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
       .then(function(response){
         var allPosts = response.data
         console.log("RESPNSE of posts:", allPosts)
-        // vm.all = response.data
-
-
-        
+        vm.all = response.data
         // iterate through all posts to match id
+        /*
         for(var i = 0; i < response.data.length; i++) {
           console.log("checking if msg belongs to garden...")
           var postObj = allPosts[i]
@@ -42,6 +40,7 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
             isUsersPost();
           } else { console.log("not a match")} ;
         }
+        */
       })
   }
 
@@ -108,6 +107,5 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
         vm.all.splice(index,1);
     })
   }
-
 
 }
