@@ -70,7 +70,7 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
       toastr.success('Garden Added!')
   }
 
-   function postYourGardenAddIdToProf () {
+  function postYourGardenAddIdToProf () {
 
       // var userId = $stateParams.userId
       // needs to get user id form jwt

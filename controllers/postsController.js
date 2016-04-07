@@ -10,11 +10,11 @@ var postsController = {
     console.log("post req.body:", req.body)
     // posts should be linked to user
     // var author = req.params.userId;
-
+    var gardenId  = req.params.gardenId
     var title = req.body.title
     var content = req.body.content;
 
-    Post.create({title: title, content: content /*author: author, garden: garden*/}, 
+    Post.create({title: title, content: content,  garden: gardenId /*author: author,*/}, 
     function(err, newPost) { 
       console.log(newPost)
       err ? console.log(err) : res.json(newPost);

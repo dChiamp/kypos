@@ -54,7 +54,28 @@
   </div>
 
 </div>
+<!-- 
+  <button ng-click="gc.doesGardenBelongToUser()" class="btn"> Does this garden belong to me? </button>
+</div>
 
-<!--   <button ng-click="gc.doesGardenBelongToUser()" class="btn"> Does this garden belong to me? </button>
-</div> -->
+ -->
+<div ng-controller="PostsController as pc">
 
+  {{pc.all}}
+
+    <a href="#" ng-click="pc.showEditForm=true" ng-hide="pc.showEditForm" class="btn btn-warning"><i class="fa fa-pencil"></i> Post a Message</a>
+
+  <form ng-show="pc.showEditForm" ng-submit="pc.newPost()">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Title"
+        ng-model="pc.newMessage.title">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Content"
+        ng-model="pc.newMessage.content">
+    </div>
+    <input type="submit" value="Send Message" class="btn btn-info">&nbsp;
+    <button ng-click="pc.showEditForm=false" class="btn btn-default">Cancel</button>
+  </form>
+
+</div>

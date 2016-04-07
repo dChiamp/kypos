@@ -55,11 +55,12 @@ router.route('/auth/login')
 //  post crud api
 router.route('/api/posts')
   .get(postsController.postIndex)
-  .post(postsController.newPost)
 
-router.route('/api/posts/:id')
+router.route('/api/posts/:gardenId')
+  .post(postsController.newPost)
   // .get(postsController.showPost)
   // .put(postsController.editPost) //update 
+router.route('/api/posts/:id')
   .delete(postsController.deletePost)
 
 module.exports = router;
