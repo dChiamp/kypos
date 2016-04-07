@@ -7,6 +7,7 @@ var PostSchema = new Schema({
   content: String,
   author: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   garden: [{ type: Schema.Types.ObjectId, ref: 'Garden' }],
+  // canEdit: { type: Date, default: false },
   Pics: String
 })
 

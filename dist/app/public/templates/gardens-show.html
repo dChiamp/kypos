@@ -70,8 +70,9 @@
   <p> title: {{p.title}}</p>
   <p> content: {{p.content}} </p>
   <p> author: {{p.author[0].username}} </p>
-  <div ng-if="isDeletable"> 
-    <button ng-click="deletePost()"> delete</button> 
+  <!-- <p> deletable?: </p> -->
+  <div ng-if="msg.deletable"> 
+    <button class="btn btn-danger" ng-click="pc.deletePost(p)"> delete</button> 
   </div>
 </div>
 
