@@ -25,34 +25,15 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
         console.log("RESPNSE of posts:", allPosts)
         vm.all = response.data
         // iterate through all posts to match id
-        /*
-        for(var i = 0; i < response.data.length; i++) {
-          console.log("checking if msg belongs to garden...")
-          var postObj = allPosts[i]
-          var postGardenId = postObj.garden[0];
-          console.log("post's GardenId:", postGardenId)
-          if (gardenId === postGardenId ){
-          // if both ids match, push the full post to vm.all,  parse in view
-            vm.all.push(postObj)
-            console.log("msg matchs!")
-            console.log("view model:", vm.all)
-            // $scope.apply();
-          } else { console.log("not a match")} ;
-        }
-        */
+        //Filter for matching post to garden on back end
+
             isUsersPost();
       })
   }
 
   function isUsersPost () {
     // get user id:
-    var payload = window.localStorage.satellizer_token;
-    payload = payload.split('.')[1];
-    payload = window.atob(payload);
-    payload = JSON.parse(payload);
-    console.log("useriD:", payload.sub);
-
-    var userId = payload.sub
+    var userId = Account.getUserIdFromJwt();
     var gardenId = $stateParams.id
     // iterate thru all messages
     // check if author matches current user id
@@ -69,18 +50,12 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
     }
   }
 
-  // in backend, also check that the user id matches the post author
+  // in backend, also checking that the user id matches the post author
 
   function newPost() {
     // console.log("new post agular")
     // console.log("vm.newPost:", vm.newPost)
-    var payload = window.localStorage.satellizer_token;
-    payload = payload.split('.')[1];
-    payload = window.atob(payload);
-    payload = JSON.parse(payload);
-    console.log("useriD:", payload.sub);
-
-    var userId = payload.sub
+    var userId = Account.getUserIdFromJwt();
     var gardenId = $stateParams.id;
     $http
       .post('/api/users/' + userId +  '/posts/' + gardenId, vm.newMessage)
@@ -92,12 +67,7 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
   }
 
   function deletePost(post) {
-    var payload = window.localStorage.satellizer_token;
-    payload = payload.split('.')[1];
-    payload = window.atob(payload);
-    payload = JSON.parse(payload);
-    // console.log("useriD:", payload.sub);
-    var userId = payload.sub
+    var userId = Account.getUserIdFromJwt();
     $http
       // .delete('/api/posts/:postId/users/:id', post._id);
       // .delete('/api/posts/' + post._id)

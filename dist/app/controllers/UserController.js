@@ -24,13 +24,7 @@ function UserController ($scope, $http, $stateParams) {
     // get garden id
     var gardenId = $stateParams.id
     // get user id from jwt
-
-    // make as a helper function
-    var payload = window.localStorage.satellizer_token;
-    payload = payload.split('.')[1];
-    payload = window.atob(payload);
-    payload = JSON.parse(payload);
-    var userId = payload.sub
+    var userId = Account.getUserIdFromJwt();
     console.log("useriD:", payload.sub);
     
     $scope.isEditable = false;

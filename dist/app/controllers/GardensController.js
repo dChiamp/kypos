@@ -13,18 +13,24 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
   vm.addGarden = addGarden;
   vm.deleteGarden = deleteGarden;
   vm.updateGarden = updateGarden;
-  // vm.joinGarden = joinGarden;
-  vm.decodeJwtAndJoinGarden = decodeJwtAndJoinGarden;
+  // vm.decodeJwtAndJoinGarden = decodeJwtAndJoinGarden;
   vm.seeUserProfile = seeUserProfile;
   vm.postYourGarden = postYourGarden;
   vm.postYourGardenAddIdToProf = postYourGardenAddIdToProf;
   vm.doesGardenBelongToUser = doesGardenBelongToUser;
-  vm.unjoinGarden = unjoinGarden;
   vm.isUserMemberOfGarden = isUserMemberOfGarden;
+  vm.testUserId = testUserId;
+  vm.joinGarden = joinGarden;
+  vm.unjoinGarden = unjoinGarden;
 
   vm.userIdFromView = {}
   
   getGardens();
+
+  function testUserId () {
+    var userId = Account.getUserIdFromJwt();
+    console.log(userId);
+  }
 
   function getGardens() {
     $http
@@ -75,13 +81,7 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
 
       // var userId = $stateParams.userId
       // needs to get user id form jwt
-
-      var payload = window.localStorage.satellizer_token;
-      payload = payload.split('.')[1];
-      payload = window.atob(payload);
-      payload = JSON.parse(payload);
-      // console.log("useriD:", payload.sub);
-      var userId = payload.sub
+      var userId = Account.getUserIdFromJwt();
 
       $http
         .post('/api/users/' + userId + '/gardens', vm.newGarden)
@@ -116,32 +116,9 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
   // get gardenId from click
   // or get id from uri 
 
-  /*
-  function joinGarden(garden) {
-    console.log("gardenId: ", garden._id)
-    // get user id. this fnc return user id
-    // prob needs a promise
-    var userId = Account.getUserIdFromJwt()
-    console.log(userId);
-    // then send req w/ both userid and garden to server
-    // need to pass userObj in here
-    $http
-    // .put('/api/join/gardens/' + garden._id, garden)
-      .put('/api/gardens/' + garden._id, garden)
-      .then(function(response) {
-        // console.log("join res from server:", response.data)
-      })
-    // push user id to gardeners array (server side)
-  }
-  */
+  function joinGarden (garden) {
+    var userId = Account.getUserIdFromJwt();
 
-  function decodeJwtAndJoinGarden (garden) {
-    var payload = window.localStorage.satellizer_token;
-    payload = payload.split('.')[1];
-    payload = window.atob(payload);
-    payload = JSON.parse(payload);
-    console.log("useriD:", payload.sub);
-    var userId = payload.sub
     // need to pass userObj in here
     $http
       .put('/api/gardens/' + garden._id + '/users/' + userId)
@@ -150,17 +127,10 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
           console.log("join res from server:", response.data)
         })
     // push user id to gardeners array (server side)
-    // return payload;
  };
 
 function unjoinGarden (garden) {
-  var payload = window.localStorage.satellizer_token;
-  payload = payload.split('.')[1];
-  payload = window.atob(payload);
-  payload = JSON.parse(payload);
-  console.log("useriD:", payload.sub);
-
-  var userId = payload.sub
+  var userId = Account.getUserIdFromJwt();
   var gardenId = $stateParams.id
   $http
     .put('/api/users/' + userId + '/gardens/' + gardenId)
@@ -186,17 +156,10 @@ function unjoinGarden (garden) {
     // get garden id
     var gardenId = $stateParams.id
     // get user id from jwt
-
     // make as a helper function
-    var payload = window.localStorage.satellizer_token;
-    payload = payload.split('.')[1];
-    payload = window.atob(payload);
-    payload = JSON.parse(payload);
-    var userId = payload.sub
-    console.log("useriD:", payload.sub);
+    var userId = Account.getUserIdFromJwt();
     
     $scope.isEditable = false;
-
 
     $http
       .get('/api/profile/' + userId)
@@ -229,11 +192,7 @@ function unjoinGarden (garden) {
     // get user id from jwt
 
     // make as a helper function
-    var payload = window.localStorage.satellizer_token;
-    payload = payload.split('.')[1];
-    payload = window.atob(payload);
-    payload = JSON.parse(payload);
-    var userId = payload.sub
+    var userId = Account.getUserIdFromJwt();
     
     $scope.canJoinGarden = true;
     $scope.canUnjoinGarden = false;
@@ -254,9 +213,6 @@ function unjoinGarden (garden) {
       })
 
   }
-
-
-
 
   console.log("garden cntrl")
 }
