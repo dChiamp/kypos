@@ -20,6 +20,7 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
   vm.postYourGardenAddIdToProf = postYourGardenAddIdToProf;
   vm.doesGardenBelongToUser = doesGardenBelongToUser;
   vm.unjoinGarden = unjoinGarden;
+  vm.isUserMemberOfGarden = isUserMemberOfGarden;
 
   vm.userIdFromView = {}
   
@@ -196,6 +197,7 @@ function unjoinGarden (garden) {
     
     $scope.isEditable = false;
 
+
     $http
       .get('/api/profile/' + userId)
       .then(function(response) {
@@ -211,12 +213,46 @@ function unjoinGarden (garden) {
           if (usersGardens.indexOf(gardenId) !== -1 ) {
             // then do allow user to edit
             console.log("yes, garden belongs to user")
+
             $scope.isEditable = true;
+            // $scope.canJoinGarden = false;
+            // $scope.canUnjoinGarden = true;
           }
         }
           
       })
     
+  }
+
+  function isUserMemberOfGarden () {
+    var gardenId = $stateParams.id
+    // get user id from jwt
+
+    // make as a helper function
+    var payload = window.localStorage.satellizer_token;
+    payload = payload.split('.')[1];
+    payload = window.atob(payload);
+    payload = JSON.parse(payload);
+    var userId = payload.sub
+    
+    $scope.canJoinGarden = true;
+    $scope.canUnjoinGarden = false;
+
+    $http
+      .get('/api/gardens/' + gardenId)
+      .then(function(response) {
+        for (var i=0; i < response.data.gardeners.length; i++) {
+
+          var gardenMembers = response.data.gardeners[i]._id
+
+          if (gardenMembers.indexOf(userId) !== -1 ) {
+            console.log("USER IS MEMBER OF GARDEN!")
+            $scope.canJoinGarden = false;
+            $scope.canUnjoinGarden = true;
+          }
+        }
+      })
+
   }
 
 

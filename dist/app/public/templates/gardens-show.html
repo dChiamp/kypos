@@ -24,9 +24,17 @@
 
 <hr>
 
-<button class='btn btn-info' ng-click="gc.decodeJwtAndJoinGarden(garden)"> Join This Garden </button>
+<div ng-init="gc.isUserMemberOfGarden()">
+  
+  <div ng-if="canJoinGarden">
+    <button class='btn btn-info' ng-click="gc.decodeJwtAndJoinGarden(garden)"> Join This Garden </button>
+  </div>
 
-<button class='btn btn-info' ng-click="gc.unjoinGarden(garden)"> unJoin This Garden </button>
+  <div ng-if="canUnjoinGarden">
+    <button class='btn btn-info' ng-click="gc.unjoinGarden(garden)"> unJoin This Garden </button>
+  </div>
+
+</div>
 
 <div ng-init="gc.doesGardenBelongToUser()">
 
