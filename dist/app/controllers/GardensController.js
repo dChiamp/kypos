@@ -6,7 +6,7 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
   var vm = this;
   vm.all = [];
   // console.log("whos on scope: ", vm.all)
-
+  $scope.test = "BEFORE";
   vm.newGarden = {};
   vm.getGardens = getGardens;
   vm.getGarden = getGarden;
@@ -36,7 +36,6 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
     $http
       .get('/api/gardens')
       .then(function(response) {
-        console.log("getGardens: ", response.data)
         vm.all = response.data;
       })
   }
@@ -47,7 +46,6 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
     $http
       .get('/api/gardens/' + currentId)
       .then(function(response) {
-        console.log("show garden: ", response.data);
         // inject vm 
         // vm.all = response.data;
         $scope.garden = response.data
@@ -102,9 +100,8 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
         vm.all.splice(index, 1);
       })
   }
-// something is up with this shit
+
   function updateGarden(garden) {
-    console.log("after click on update: ", garden)
       $http
         .put('/api/gardens/' + garden._id, garden)
         .then(function (response) {
@@ -125,19 +122,33 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
         // .put('/api/gardens/' + garden._id, garden)
       .then(function(response) {
           console.log("join res from server:", response.data)
-        })
+          $scope.test = "AFTER";
+          if(!$scope.$$phase) {
+            $scope.$apply();
+          }
+      })
     // push user id to gardeners array (server side)
  };
 
-function unjoinGarden (garden) {
-  var userId = Account.getUserIdFromJwt();
-  var gardenId = $stateParams.id
-  $http
-    .put('/api/users/' + userId + '/gardens/' + gardenId)
-    .then(function(response){
-      console.log("Gardens you are PRT OF:", response)
-    })
-}
+  
+
+  function unjoinGarden (garden) {
+    var userId = Account.getUserIdFromJwt();
+    var gardenId = $stateParams.id
+      $scope.test = "BEFORE";
+      $http
+        .put('/api/users/' + userId + '/gardens/' + gardenId)
+        .then(function(response){
+          console.log("Gardens you are PRT OF:", response)
+            
+            
+          // $scope.apply(function() {
+          //   $scope.garden = response.data;
+          //   vm.all = response.data;
+          // })
+        })
+
+  }
 
  function seeUserProfile (userId) {
   console.log(userId);
@@ -165,7 +176,7 @@ function unjoinGarden (garden) {
       .get('/api/profile/' + userId)
       .then(function(response) {
         // what if user has no gardens?
-        console.log("users gardens: ", response.data.gardens[0]._id)
+        // console.log("users gardens: ", response.data.gardens[0]._id)
         // render json from server
         for (var i = 0; i < response.data.gardens.length; i++ ) {
           console.log("searching through your gardens")

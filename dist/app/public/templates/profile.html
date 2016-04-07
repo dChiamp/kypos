@@ -1,8 +1,5 @@
-<!-- <span>your name is {{auth.profile.nickname}}</span>
-<h1>Test</h1> -->
 
 <h1>  Welcome to Your Profile </h1>
-
 
 <div ng-controller="MainController as main">
   <h3>{{main.currentUser.displayName}}</h3>
@@ -48,10 +45,6 @@
 </div>
 
 
-<h1></h1>
-
-<!-- <button class="btn btn-danger" ng-click="profile.getUserInfo()">DO NOT PRESS!</button> -->
-
 <hr>
 <!-- post garden -->
 <div ng-controller="GardensController as gc">
@@ -72,18 +65,6 @@
     </form>
     <button ng-click="gc.showEditForm=false" class="btn btn-danger">Cancel</button>
   </div>
-
-<!--   <h3> post garden and add its id to your prof</h3>
-    <form ng-submit="gc.postYourGardenAddIdToProf()" >
-    <div class="form-group">
-      <input type="text" ng-model="gc.newGarden.name" placeholder="name">
-    </div>
-    <div class="form-group">
-      <input type="text" ng-model="gc.newGarden.description" placeholder="description">
-    </div>
-    <input type="submit" value="test!" class="btn btn-success">&nbsp;
-  </form> -->
-
 </div>
 
 <div ng-controller="UserController as uc">

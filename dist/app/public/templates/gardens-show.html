@@ -1,23 +1,15 @@
 <div ng-init="gc.getGarden()">
-  
+  <!-- {{test}} -->
   <h1>Garden Details</h1>
 <div> 
     <h3> Name: {{garden.name}} </h3>
   <ul>
     <li> Address: {{garden.address}} </li>
     <li> Description: {{garden.description}} </li>
-    <li> lat: {{garden.coords.latitude}} </li>
-    <!-- <li> gardeners: {{garden.gardeners}} </li> -->
-    <!-- <li> gardeners: {{garden.gardeners[0].username}} </li> -->
-    <!-- <li> gardeners: {{garden.gardeners[1].username}} </li> -->
-    <!-- <button ng-click="hazards.$remove(hazard)"> Fixed! </button> -->
   </ul>
     <p>gardeners: </p>
   <div ng-repeat="gardener in garden.gardeners"> 
-    <!-- <p> name: {{gardener.username}}  </p> -->
     <a ng-href='/user/{{gardener._id}}'> <p> {{gardener.username}}  </p> </a>
-    <!-- <p>gardeners: {{gardener._id}}  </p> -->
-    <!-- <a ui-sref="user-show"> see user prof </a> -->
   </div>  
 </div>
 <!-- {{garden}} -->
@@ -64,16 +56,10 @@
   </div>
 
 </div>
-<!-- 
-  <button ng-click="gc.doesGardenBelongToUser()" class="btn"> Does this garden belong to me? </button>
-</div>
 
- -->
 <div ng-controller="PostsController as pc">
 
 <h3>Messages</h3>
-
-  <!-- <p> all: {{pc.all}} </p> -->
 
 <div ng-repeat="p in pc.all track by $index">
   <!-- <p> one: {{pc.all[i].title}} </p> -->
