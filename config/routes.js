@@ -26,6 +26,11 @@ router.route('/api/gardens/:id')
 router.route('/api/gardens/:gardenId/users/:userId')
   .put(gardensController.joinGarden);
 
+
+// UNjoin garden
+router.route('/api/users/:userId/gardens/:gardenId')
+  .put(gardensController.unjoinGarden);
+
 // user's garden
 router.route('/api/users/:userId/gardens') 
   // .post(gardensController.postGarden)

@@ -107,6 +107,21 @@ var gardensController = {
     });
 
   },
+  unjoinGarden: function(req,res) {
+    var gardenId = req.params.gardenId;
+    var userId = req.params.userId
+
+    Garden.findById({_id: gardenId}, function(req, garden){
+      console.log("Gardens: ", garden.gardeners)
+      // find user id in gardeners array, and splice it
+      var index = garden.gardeners.splice(index, 1);
+      console.log(garden.gardeners)
+      // update
+      garden.save(function(err,data){
+        console.log("user removed")
+      })
+    })
+  },
   geocodeAndPost: function (req, res) {
     console.log("geocodeAndPost HITT")
     

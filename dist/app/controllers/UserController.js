@@ -19,6 +19,7 @@ function UserController ($scope, $http, $stateParams) {
       })
   }
 
+  // edit garden permissions
   function doesGardenBelongToUser() {
     // get garden id
     var gardenId = $stateParams.id

@@ -13,13 +13,13 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
   vm.addGarden = addGarden;
   vm.deleteGarden = deleteGarden;
   vm.updateGarden = updateGarden;
-  vm.joinGarden = joinGarden;
+  // vm.joinGarden = joinGarden;
   vm.decodeJwtAndJoinGarden = decodeJwtAndJoinGarden;
   vm.seeUserProfile = seeUserProfile;
   vm.postYourGarden = postYourGarden;
   vm.postYourGardenAddIdToProf = postYourGardenAddIdToProf;
   vm.doesGardenBelongToUser = doesGardenBelongToUser;
-
+  vm.unjoinGarden = unjoinGarden;
 
   vm.userIdFromView = {}
   
@@ -114,16 +114,13 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
   // needs to update garden with user id
   // get gardenId from click
   // or get id from uri 
+
+  /*
   function joinGarden(garden) {
     console.log("gardenId: ", garden._id)
     // get user id. this fnc return user id
     // prob needs a promise
     var userId = Account.getUserIdFromJwt()
-    //   .then( 
-    //     function onSuccess(response) {
-    //     console.log("userID:", response)
-    //     return response.data._id;
-    // })
     console.log(userId);
     // then send req w/ both userid and garden to server
     // need to pass userObj in here
@@ -135,6 +132,7 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
       })
     // push user id to gardeners array (server side)
   }
+  */
 
   function decodeJwtAndJoinGarden (garden) {
     var payload = window.localStorage.satellizer_token;
@@ -153,6 +151,22 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
     // push user id to gardeners array (server side)
     // return payload;
  };
+
+function unjoinGarden (garden) {
+  var payload = window.localStorage.satellizer_token;
+  payload = payload.split('.')[1];
+  payload = window.atob(payload);
+  payload = JSON.parse(payload);
+  console.log("useriD:", payload.sub);
+
+  var userId = payload.sub
+  var gardenId = $stateParams.id
+  $http
+    .put('/api/users/' + userId + '/gardens/' + gardenId)
+    .then(function(response){
+      console.log("Gardens you are PRT OF:", response)
+    })
+}
 
  function seeUserProfile (userId) {
   console.log(userId);
@@ -185,6 +199,7 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
     $http
       .get('/api/profile/' + userId)
       .then(function(response) {
+        // what if user has no gardens?
         console.log("users gardens: ", response.data.gardens[0]._id)
         // render json from server
         for (var i = 0; i < response.data.gardens.length; i++ ) {
@@ -203,6 +218,8 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
       })
     
   }
+
+
 
 
   console.log("garden cntrl")
