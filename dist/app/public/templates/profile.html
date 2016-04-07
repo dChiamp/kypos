@@ -1,13 +1,16 @@
 <!-- <span>your name is {{auth.profile.nickname}}</span>
 <h1>Test</h1> -->
 
+<h1>  Welcome to Your Profile </h1>
+
+
 <div ng-controller="MainController as main">
   <h3>{{main.currentUser.displayName}}</h3>
   <hr>
-  <p><strong>Email:</strong> {{main.currentUser().email}}</p>
   <p><strong>Username:</strong> {{main.currentUser().username}}</p>
+  <p><strong>Email:</strong> {{main.currentUser().email}}</p>
   <p><strong>Joined:</strong> {{main.currentUser().created | date:'MMMM dd, yyyy'}}</p>
-  <p><strong>Gardens:</strong> {{main.currentUser().gardens[0].name}}</p>
+  <p><strong>Garden:</strong> {{main.currentUser().gardens[0].name}}</p>
 </div>
 
 <div ng-controller="UserController">

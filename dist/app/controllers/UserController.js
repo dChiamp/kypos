@@ -7,8 +7,6 @@ function UserController ($scope, $http, $stateParams) {
   vm.getUser = getUser;
   vm.doesGardenBelongToUser = doesGardenBelongToUser;
   
-  // getUser();
-
   function getUser() {
     var userId = $stateParams.id;
     $http
@@ -34,9 +32,7 @@ function UserController ($scope, $http, $stateParams) {
       .then(function(response) {
         console.log("users gardens: ", response.data.gardens[0]._id)
         // render json from server
-
         var usersGardens = response.data.gardens[0]._id
-
         // if garden id is in user's gardens
         if (usersGardens.indexOf(gardenId) !== -1 ) {
           // then do allow user to edit
@@ -44,7 +40,6 @@ function UserController ($scope, $http, $stateParams) {
           $scope.isEditable = true;
         }
       })
-    
   }
 
 }
