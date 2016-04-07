@@ -7,6 +7,7 @@ var GardenSchema = new Schema({
   name: String,
   description: String,
   gardeners: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
   coords: {
       latitude: Number,
       longitude: Number,

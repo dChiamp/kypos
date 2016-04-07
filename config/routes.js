@@ -8,6 +8,7 @@ var gardensController = require('../controllers/gardensController');
 var usersController = require('../controllers/usersController');
 var authController = require('../controllers/authController');
 var geocoderController = require('../controllers/geocoderController');
+var postsController = require('../controllers/postsController');
 
 //  garden crud api
 router.route('/api/gardens')
@@ -50,5 +51,15 @@ router.route('/auth/signup')
 
 router.route('/auth/login')
   .post(authController.login)
+
+//  post crud api
+router.route('/api/posts')
+  .get(postsController.postIndex)
+  .post(postsController.newPost)
+
+router.route('/api/posts/:id')
+  // .get(postsController.showPost)
+  // .put(postsController.editPost) //update 
+  .delete(postsController.deletePost)
 
 module.exports = router;

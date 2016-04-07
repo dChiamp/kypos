@@ -10,7 +10,8 @@ var userSchema = new Schema({
   displayName: String,
   username: { type: String },
   picture: String,
-  gardens: [{ type: Schema.Types.ObjectId, ref: 'Garden' }]
+  gardens: [{ type: Schema.Types.ObjectId, ref: 'Garden' }],
+  posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }]
 });
 
 userSchema.pre('save', function (next) {
