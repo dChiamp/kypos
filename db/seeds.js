@@ -1,6 +1,11 @@
 mongoose = require('mongoose'),
-  conn = mongoose.connect('mongodb://localhost/kypos')
-  Garden = require('../models/gardens.js')
+  conn = mongoose.connect('mongodb://localhost/kypos'),
+  Garden = require('../models/gardens.js'),
+  Post = require('../models/posts.js');
+
+Post.remove({}, function(err) {
+  if (err) console.log('ERROR:', err)
+})
 
 Garden.remove({}, function(err) {
   if (err) console.log('ERROR:', err)

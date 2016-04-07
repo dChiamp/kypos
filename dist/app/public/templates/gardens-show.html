@@ -63,12 +63,16 @@
 
 <h3>Messages</h3>
 
-  <p> all: {{pc.all}} </p>
+  <!-- <p> all: {{pc.all}} </p> -->
 
-<div ng-repeat="p in pc.all[$index]">
+<div ng-repeat="p in pc.all track by $index">
   <!-- <p> one: {{pc.all[i].title}} </p> -->
-  <!-- <p> two: {{pc.all[i].content}} </p> -->
   <p> title: {{p.title}}</p>
+  <p> content: {{p.content}} </p>
+  <p> author: {{p.author[0].username}} </p>
+  <div ng-if="isDeletable"> 
+    <button ng-click="deletePost()"> delete</button> 
+  </div>
 </div>
 
   <a href="#" ng-click="pc.showEditForm=true" ng-hide="pc.showEditForm" class="btn btn-warning"><i class="fa fa-pencil"></i> Post a Message</a>
