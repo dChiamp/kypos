@@ -63,9 +63,12 @@
 
 <h3>Messages</h3>
 
-  <!-- <p> {{pc.all}} </p> -->
-  <p> {{pc.all}} </p>
-<div ng-repeat="message in all">
+  <p> all: {{pc.all}} </p>
+
+<div ng-repeat="p in pc.all[$index]">
+  <!-- <p> one: {{pc.all[i].title}} </p> -->
+  <!-- <p> two: {{pc.all[i].content}} </p> -->
+  <p> title: {{p.title}}</p>
 </div>
 
   <a href="#" ng-click="pc.showEditForm=true" ng-hide="pc.showEditForm" class="btn btn-warning"><i class="fa fa-pencil"></i> Post a Message</a>

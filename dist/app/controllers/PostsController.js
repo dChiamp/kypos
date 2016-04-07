@@ -13,26 +13,25 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
   getPosts();
   // checkIfPostBelongsGarden();
 
+  // gets posts and FIlters for garden match
   function getPosts (post) {
     var gardenId = $stateParams.id;
-    console.log("this garden's id:", gardenId)
+    // console.log("this garden's id:", gardenId)
     $http
       .get('/api/posts/')
       .then(function(response){
-        // console.log("getPosts:", response.data)
         var allPosts = response.data
         // iterate through all posts to match id
-        // vm.all = response.data
-        // console.log("gardenID", response.data[3].garden[0])
         for(var i = 0; i < response.data.length; i++) {
           console.log("checking if msg belongs to garden...")
           var postObj = allPosts[i]
           var postGardenId = postObj.garden[0];
           console.log("post's GardenId:", postGardenId)
           if (gardenId === postGardenId ){
-          // if both ids match, push that post to vm.all
+          // if both ids match, push the full post to vm.all,  parse in view
             vm.all.push(postObj)
             console.log("msg matchs!")
+            console.log("view model:", vm.all)
           } else { console.log("not a match")} ;
         }
 
@@ -66,8 +65,8 @@ function checkIfPostBelongsGarden () {
       .then(function(response){
         vm.all.push(response.data)
       })
-      vm.newPost = {}
       toastr.success('Message Sent!')
+      vm.newMessage = {}
   }
 
   function deletePost(post) {
