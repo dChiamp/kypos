@@ -61,9 +61,14 @@
  -->
 <div ng-controller="PostsController as pc">
 
-  {{pc.all}}
+<h3>Messages</h3>
 
-    <a href="#" ng-click="pc.showEditForm=true" ng-hide="pc.showEditForm" class="btn btn-warning"><i class="fa fa-pencil"></i> Post a Message</a>
+  <!-- <p> {{pc.all}} </p> -->
+  <p> {{pc.all}} </p>
+<div ng-repeat="message in all">
+</div>
+
+  <a href="#" ng-click="pc.showEditForm=true" ng-hide="pc.showEditForm" class="btn btn-warning"><i class="fa fa-pencil"></i> Post a Message</a>
 
   <form ng-show="pc.showEditForm" ng-submit="pc.newPost()">
     <div class="form-group">

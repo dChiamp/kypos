@@ -5,7 +5,7 @@ app.controller('GardensController', GardensController);
 function GardensController ($scope, $http, $stateParams, Account, toastr) {
   var vm = this;
   vm.all = [];
-  console.log("whos on scope: ", vm.all)
+  // console.log("whos on scope: ", vm.all)
 
   vm.newGarden = {};
   vm.getGardens = getGardens;
@@ -36,7 +36,7 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
 
   function getGarden (garden) {
     var currentId = $stateParams.id;
-    console.log(currentId)
+    // console.log(currentId)
     $http
       .get('/api/gardens/' + currentId)
       .then(function(response) {
@@ -51,7 +51,7 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
     $http
       .post('/api/gardens', vm.newGarden)
       .then(function(response) {
-        console.log("new garden:", response.data)
+        // console.log("new garden:", response.data)
         vm.all.push(response.data)
       })
       vm.newGarden = {}
@@ -63,7 +63,7 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
     $http
       .post('/api/garden/create', vm.newGarden)
       .then(function(response) {
-        console.log("new garden:", response.data)
+        // console.log("new garden:", response.data)
         vm.all.push(response.data)
       })
       vm.newGarden = {}
@@ -79,13 +79,13 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
       payload = payload.split('.')[1];
       payload = window.atob(payload);
       payload = JSON.parse(payload);
-      console.log("useriD:", payload.sub);
+      // console.log("useriD:", payload.sub);
       var userId = payload.sub
 
       $http
         .post('/api/users/' + userId + '/gardens', vm.newGarden)
         .then(function(response) {
-          console.log("new garden:", response.data)
+          // console.log("new garden:", response.data)
           vm.all.push(response.data)
         })
         vm.newGarden = {}
@@ -96,7 +96,7 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
     $http
       .delete('/api/gardens/' + garden._id)
       .then(function(response) {
-        console.log("deleted: ", response.data);
+        // console.log("deleted: ", response.data);
         var index = vm.all.indexOf(garden);
         vm.all.splice(index, 1);
       })
@@ -108,7 +108,7 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
         .put('/api/gardens/' + garden._id, garden)
         .then(function (response) {
             // vm.garden = response.data;
-            console.log("update response from server: ", response.data)
+            // console.log("update response from server: ", response.data)
         })
   }
   // needs to update garden with user id
@@ -131,7 +131,7 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
     // .put('/api/join/gardens/' + garden._id, garden)
       .put('/api/gardens/' + garden._id, garden)
       .then(function(response) {
-        console.log("join res from server:", response.data)
+        // console.log("join res from server:", response.data)
       })
     // push user id to gardeners array (server side)
   }
@@ -167,7 +167,7 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
   // $scope.isEditable = false;
 
   function doesGardenBelongToUser() {
-    console.log("does this garden beleong to me?")
+    // console.log("does this garden beleong to me?")
     // get garden id
     var gardenId = $stateParams.id
     // get user id from jwt
