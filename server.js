@@ -12,7 +12,7 @@ var mongoose = require('mongoose');
 // require and load dotenv
 require('dotenv').load();
 
-mongoose.connect( process.env.MONGOLAB_URI || 'mongodb://localhost/kypos');
+mongoose.connect( process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/kypos');
 
 process.on('exit', function(){ 
   mongoose.disconnect();
@@ -34,7 +34,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/', express.static(path.join(__dirname, '/dist')));
+app.use(express.static(path.join(__dirname, '/dist')));
 
 app.use(methodOverride('_method'));
 
