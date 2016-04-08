@@ -1,5 +1,6 @@
 KYPOS
 
+https://kypos.herokuapp.com/
 
 An app to connect people to urban gardens.
 
@@ -34,11 +35,11 @@ Kypos is a full **MEAN** stack web app
 
 What Else?
 
-**SASS** for style
-**Grunt** taskrunner
-**Google** Maps API
-**Geocoder** to translate addresses to lat long
-**toaster** for flash notifications
+-**SASS** for style
+-**Grunt** taskrunner
+-**Google Maps API**
+-**Geocoder** to translate addresses to lat long
+-**toaster** for flash notifications
 
 
 Coming Soon:
