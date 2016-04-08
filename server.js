@@ -34,7 +34,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '/dist')));
+app.use(express.static(path.join(process.cwd(), '/dist')));
 // app.use('/dist/bower_components',  express.static(__dirname + '/dist/bower_components'));
 
 app.use(methodOverride('_method'));
@@ -50,7 +50,7 @@ app.use(routes);
 app.get('/*', function(req, res){
   // res.render('index');
   console.log("HIT!")
-  res.sendFile(__dirname + '/views/index.html')
+  res.sendFile(process.cwd() + '/views/index.html')
 })
 
 // catch 404 and forward to error handler
