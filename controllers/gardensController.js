@@ -131,39 +131,41 @@ var gardensController = {
     var addy = req.body.address
 
     // geocode address
-    geocoder.geocode(addy, function ( err, data ) {
-      console.log("results ARRAYYYYYYY:", data.results[0].geometry.location.lng)
-      var lat = data.results[0].geometry.location.lat
-      var long = data.results[0].geometry.location.lng
+    if(addy !== null) {
+      geocoder.geocode(addy, function ( err, data ) {
+        console.log("results ARRAYYYYYYY:", data.results[0].geometry.location.lng)
+        var lat = data.results[0].geometry.location.lat
+        var long = data.results[0].geometry.location.lng
 
-      var coords = {latitude: lat,
-                    longitude: long,
-                    id: Date.now() }
+        var coords = {latitude: lat,
+                      longitude: long,
+                      id: Date.now() }
 
-      // create garden with geocoded addy
-      Garden.create({name: name, address: addy, description: description, coords: coords}, 
-        function(err, newGarden) { 
-          // err ? console.log(err) : res.json(newGarden);
-          console.log("new garden: ", newGarden)
-          console.log(err)
+        // create garden with geocoded addy
+        Garden.create({name: name, address: addy, description: description, coords: coords}, 
+          function(err, newGarden) { 
+            // err ? console.log(err) : res.json(newGarden);
+            console.log("new garden: ", newGarden)
+            console.log(err)
 
-          // get new garden id
-          var newGardenId = newGarden._id
-          console.log("newGardenId:", newGarden._id)
+            // get new garden id
+            var newGardenId = newGarden._id
+            console.log("newGardenId:", newGarden._id)
 
-          // find User and update 
-          User.findById({_id: userId}, function(err, user){
-            console.log("user:", user)
-            console.log("user gardens:", user.gardens)
-            // push new garden id to user's garden array
-            user.gardens.push(newGardenId)
+            // find User and update 
+            User.findById({_id: userId}, function(err, user){
+              console.log("user:", user)
+              console.log("user gardens:", user.gardens)
+              // push new garden id to user's garden array
+              user.gardens.push(newGardenId)
 
-            user.save(function(err) {
-              res.send(user.populate('gardens'));
-            });
-          })
+              user.save(function(err) {
+                res.send(user.populate('gardens'));
+              });
+            })
+        })
       })
-    })
+    }
   }
   
 }

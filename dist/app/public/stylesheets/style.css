@@ -1,15 +1,32 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF;
+  color: #00B7FF; }
+
+ul {
+  list-style-type: none; }
+
+.angular-google-map-container {
+  height: 400px; }
+
+#garden-title {
+  border: 2px solid;
+  border-radius: 3px; }
+
+#post-container {
+  border: 2px solid;
+  border-radius: 3px; 
+  /*start pure csss*/
+  margin: 2px;
 }
 
-ul
-{
-    list-style-type: none;
+#body { 
+  background: url("http://3blmedia.com/media/images/GMUrbanGardens04_0.jpg/") no-repeat center center fixed; 
+  /*-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;*/
+  background-color: red;
 }
-
-.angular-google-map-container { height: 400px; }

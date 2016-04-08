@@ -27,7 +27,7 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
         // iterate through all posts to match id
         //Filter for matching post to garden on back end
 
-            isUsersPost();
+        isUsersPost();
       })
   }
 
