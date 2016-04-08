@@ -93,16 +93,6 @@ function Account($http, $q, $auth, jwtHelper) {
     );
   }
 
-  // decode jwt
-  
-  // function getUserIdFromJwt() {
-  //   // get profile obj 
-  //   getProfile().then( 
-  //     function onSuccess(response) {
-  //     console.log("userID:", response.data._id)
-  //     return response.data._id;
-  //   })
-  // }
   
   function getUserIdFromJwt() {
     var payload = window.localStorage.satellizer_token;

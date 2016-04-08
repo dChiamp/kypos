@@ -11,7 +11,7 @@ function LoginController ($scope, $location, Account, toastr) {
       .login(vm.new_user)
       .then(function(){
         vm.new_user = {}; // clear sign up form
-        $location.path('/profile'); // redirect to '/profile'
+        $location.path('/map'); // redirect to '/profile'
         toastr.success('Logged In!');
       })
   };
