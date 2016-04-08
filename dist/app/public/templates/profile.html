@@ -1,72 +1,74 @@
-
 <h1>  Welcome to Your Profile </h1>
+<hr>
 
-<div ng-controller="MainController as main">
-  <h3>{{main.currentUser.displayName}}</h3>
-  <hr>
-  <p><strong>Username:</strong> {{main.currentUser().username}}</p>
-  <p><strong>Email:</strong> {{main.currentUser().email}}</p>
-  <p><strong>Joined:</strong> {{main.currentUser().created | date:'MMMM dd, yyyy'}}</p>
-  <p><strong>Garden:</strong> <a ng-href="/gardens/{{main.currentUser().gardens[0]._id}}"> {{main.currentUser().gardens[0].name}} </a> </p>
-</div>
-
-<div ng-controller="UserController">
-  <div ng-init="getUser()">
+<div class="col-md-6 col-md-offset-3">
     
+    <div ng-controller="MainController as main" id="prof-details">
+      <h3>{{main.currentUser.displayName}}</h3>
+      <p><strong>Username:</strong> {{main.currentUser().username}}</p>
+      <p><strong>Email:</strong> {{main.currentUser().email}}</p>
+      <p><strong>Joined:</strong> {{main.currentUser().created | date:'MMMM dd, yyyy'}}</p>
+      <p><strong>Garden:</strong> <a ng-href="/gardens/{{main.currentUser().gardens[0]._id}}"> {{main.currentUser().gardens[0].name}} </a> </p>
+    </div>
+
+
+
+  <div ng-controller="UserController">
+    <div ng-init="getUser()">
+    </div>
   </div>
-  
-</div>
 
-<!-- edit profile -->
-<hr>
-<a href="#" ng-click="profile.showEditForm=true" ng-hide="profile.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Profile</a>
+  <!-- edit profile -->
+  <hr>
+  <a href="#" ng-click="profile.showEditForm=true" ng-hide="profile.showEditForm" class="btn btn-warning"><i class="fa fa-pencil"></i> Edit Profile</a>
 
 
-<div ng-show="profile.showEditForm" >
-  <form ng-submit="profile.updateProfile()">
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Full Name"
-        ng-model="profile.new_profile.displayName"
-          ng-value="main.currentUser().displayName">
-    </div>
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Username"
-        ng-model="profile.new_profile.username"
-          ng-value="main.currentUser().username">
-    </div>
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Email"
-        ng-model="profile.new_profile.email"
-          ng-value="main.currentUser().email">
-    </div>
-    <input type="submit" value="Done!" class="btn btn-success">&nbsp;
-  </form>
-  <button ng-click="profile.showEditForm=false" class="btn btn-danger">Cancel</button>
-</div>
-
-
-<hr>
-<!-- post garden -->
-<div ng-controller="GardensController as gc">
-  <a href="#" ng-click="gc.showEditForm=true" ng-hide="gc.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Post Garden</a>
-
-  <div ng-show="gc.showEditForm"> 
-    <form ng-submit="gc.postYourGardenAddIdToProf()">
+  <div ng-show="profile.showEditForm" id="garden-post-form">
+    <H5> Edit your profile details </H5>
+    <form ng-submit="profile.updateProfile()">
       <div class="form-group">
-       <input type="text" ng-model="gc.newGarden.name" placeholder="name">
+        <input type="text" class="form-control" placeholder="Full Name"
+          ng-model="profile.new_profile.displayName"
+            ng-value="main.currentUser().displayName">
       </div>
       <div class="form-group">
-        <input type="text" ng-model="gc.newGarden.description" placeholder="description">
+        <input type="text" class="form-control" placeholder="Username"
+          ng-model="profile.new_profile.username"
+            ng-value="main.currentUser().username">
       </div>
       <div class="form-group">
-       <input type="text" ng-model="gc.newGarden.address" placeholder="address">
+        <input type="text" class="form-control" placeholder="Email"
+          ng-model="profile.new_profile.email"
+            ng-value="main.currentUser().email">
       </div>
       <input type="submit" value="Done!" class="btn btn-success">&nbsp;
     </form>
-    <button ng-click="gc.showEditForm=false" class="btn btn-danger">Cancel</button>
+    <button ng-click="profile.showEditForm=false" class="btn btn-danger">Cancel</button>
   </div>
-</div>
 
-<div ng-controller="UserController as uc">
-  <button ng-click="uc.doesGardenBelongToUser()" class="btn"> get user info </button>
-</div>
+
+  <hr>
+  <!-- post garden -->
+  <div ng-controller="GardensController as gc">
+    <a href="#" ng-click="gc.showEditForm=true" ng-hide="gc.showEditForm" class="btn btn-success"><i class="fa fa-pencil"></i> Post Garden</a>
+
+    <div ng-show="gc.showEditForm" id="garden-post-form"> 
+      <h4> Add the location of your garden, and a brief description! </h4>
+      <form ng-submit="gc.postYourGardenAddIdToProf()">
+        <div class="form-group">
+         <input type="text" ng-model="gc.newGarden.name" placeholder="name">
+        </div>
+        <div class="form-group">
+          <input type="text" ng-model="gc.newGarden.description" placeholder="description">
+        </div>
+        <div class="form-group">
+         <input type="text" ng-model="gc.newGarden.address" placeholder="address">
+        </div>
+        <input type="submit" value="Done!" class="btn btn-success">&nbsp;
+      </form>
+      <button ng-click="gc.showEditForm=false" class="btn btn-danger">Cancel</button>
+    </div>
+  </div>
+
+ </div>
+

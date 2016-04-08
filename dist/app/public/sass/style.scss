@@ -28,3 +28,98 @@ ul
 body { 
   background: url("http://3blmedia.com/media/images/GMUrbanGardens04_0.jpg/") 
 }
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; 
+  background-color: #cccccc;
+  /*background: url("http://3blmedia.com/media/images/GMUrbanGardens04_0.jpg") no-repeat center center fixed; */
+  color: black;
+}
+
+garden-home {
+  background: url("http://3blmedia.com/media/images/GMUrbanGardens04_0.jpg") no-repeat center center fixed;
+}
+
+navbar {
+  display: inline;
+}
+
+
+h1 {
+
+  margin-top: 40px;
+}
+
+a {
+  color: #00B7FF; }
+
+ul {
+  list-style-type: none; }
+
+.angular-google-map-container {
+  height: 400px; }
+
+#garden-title {
+  border: 2px solid;
+  border-radius: 3px; 
+  padding: 8px;
+}
+
+#post-container {
+  border: 2px solid;
+  border-radius: 3px; 
+  /*start pure csss*/
+  margin: 5px;
+  padding: 8px;
+  /*padding-left: 40%;*/
+}
+
+#msg-container {
+  border: 2px solid;
+  border-radius: 3px; 
+  /*start pure csss*/
+  margin: 5px;
+  padding: 8px;
+}
+
+#msg-container {
+  border: 2px solid;
+  border-radius: 3px; 
+  /*start pure csss*/
+  margin: 5px;
+  padding: 8px;
+}
+
+#garden-post-form {
+  border: 2px solid black;
+  border-radius: 3px; 
+  /*start pure csss*/
+  margin: 5px;
+  padding: 8px;
+  /*background-color: lightorange;*/
+}
+
+#prof-details {
+  border: 2px solid black;
+  border-radius: 4px; 
+  /*start pure csss*/
+  margin: 5px;
+  padding: 8px;
+  /*background-color: lightgrey;*/
+}
+
+body { 
+/*    background: url("http://3blmedia.com/media/images/GMUrbanGardens04_0.jpg") ;
+no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: red;*/
+  background-color: lightblue;
+}
+
+#nav-bar {
+  background-color: green;
+}

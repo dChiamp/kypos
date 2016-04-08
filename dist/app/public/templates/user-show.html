@@ -1,8 +1,11 @@
 <h1 ng-init="uc.getUser()">  User Show Page </h1>
 <!-- <h1>User Show Page</h1> -->
+<hr>
 
-<p>  Username: {{user.username}} </p>
-<p>  Email: {{user.email}} </p>
-<p>  Garden: <a ng-href="/gardens/{{user.gardens[0]._id}}"> {{user.gardens[0].name}} </a> </p>
-
-  <button ng-click="uc.doesGardenBelongToUser()" class="btn"> get user info </button>
+<div class="col-md-6 col-md-offset-3">
+  <div id="user-show-container" class=>
+    <p>  Username: {{user.username}} </p>
+    <p>  Email: {{user.email}} </p>
+    <p>  Garden: <a ng-href="/gardens/{{user.gardens[0]._id}}"> {{user.gardens[0].name}} </a> </p>
+  </div>
+</div>

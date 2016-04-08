@@ -68,32 +68,33 @@
 
 <div id="garden-home">
   
-   <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" ui-sref="home">Kypos</a>
-      </div><!-- /.navbar-collapse -->
+ <nav class="navbar navbar-default" id="snav-bar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ui-sref="home">Kypos</a>
+    </div><!-- /.navbar-collapse -->
 
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-          <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
-          <!-- <li><a ui-sref="home">Home</a></li> -->
-          <li><a ui-sref="login">Login</a></li>
-          <li><a ui-sref="signup">Signup</a></li>
-          <li><a ui-sref="profile">Profile</a></li>
-          <li><a ui-sref="logout">Log Out</a></li>
-          <li><a ui-sref="gardens-index">Gardens</a></li>
-          <li><a ui-sref="map">Map</a></li>
-          <!-- <li><a href="" ng-click="logout()">SignOut</a></li> -->
-        </ul>
-      </div><!-- /.container-fluid -->
-    </nav>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
+        <!-- <li><a ui-sref="home">Home</a></li> -->
+        <li><a ui-sref="login">Login</a></li>
+        <li><a ui-sref="signup">Signup</a></li>
+        <li><a ui-sref="profile">Profile</a></li>
+        <li><a ui-sref="logout">Log Out</a></li>
+        <!-- <li><a ui-sref="gardens-index">Gardens</a></li> -->
+        <li><a ui-sref="map">Map</a></li>
+        <!-- <li><a href="" ng-click="logout()">SignOut</a></li> -->
+      </ul>
+    </div><!-- /.container-fluid -->
+  </nav>
+
 </div>
 
 <div ui-view> </div>

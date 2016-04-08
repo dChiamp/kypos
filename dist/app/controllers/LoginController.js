@@ -1,17 +1,5 @@
 app.controller('LoginController', LoginController);
 
-// Auth0
-// function LoginController ($scope, auth, $location, store) {
-//   $scope.auth = auth;
-
-//   $scope.logout = function() {
-//     auth.signout();
-//     store.remove('profile');
-//     store.remove('token');
-//     $location.path('/login');
-//   }
-
-// }
 
 // LoginController.$inject = ["$location", "Account"]; // minification protection
 function LoginController ($scope, $location, Account, toastr) {

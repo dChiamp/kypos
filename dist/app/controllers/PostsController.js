@@ -64,6 +64,7 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
       })
       toastr.success('Message Sent!')
       vm.newMessage = {}
+      location.reload();
   }
 
   function deletePost(post) {
