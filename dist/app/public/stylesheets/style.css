@@ -92,3 +92,17 @@ no-repeat center center fixed;
 #nav-bar {
   background-color: green;
 }
+
+#welcome-page{
+  font-size: 48px;
+  color: white;
+  background-color: #FFAF46;
+  border-radius: 5px;
+  padding: 20px;
+  opacity: 0.9;
+
+}
+#title {
+  font-size: 70px;
+  color: #FFAF46;
+}

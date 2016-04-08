@@ -1,6 +1,5 @@
 app.controller('LoginController', LoginController);
 
-
 // LoginController.$inject = ["$location", "Account"]; // minification protection
 function LoginController ($scope, $location, Account, toastr) {
   var vm = this;
