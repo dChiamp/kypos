@@ -47,7 +47,7 @@ app.use(routes);
 // error handlers
 // angular routes
 
-app.get('*', function(req, res){
+app.get('/*', function(req, res){
   // res.render('index');
   console.log("HIT!")
   res.sendFile(__dirname + '/views/index.html')
