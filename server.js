@@ -12,7 +12,7 @@ var mongoose = require('mongoose');
 // require and load dotenv
 require('dotenv').load();
 
-mongoose.connect('mongodb://localhost/kypos');
+mongoose.connect( process.env.MONGOLAB_URI || 'mongodb://localhost/kypos');
 
 process.on('exit', function(){ 
   mongoose.disconnect();
