@@ -1,5 +1,5 @@
 mongoose = require('mongoose'),
-  conn = mongoose.connect('mongodb://localhost/kypos'),
+  conn = mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/kypos'),
   Garden = require('../models/gardens.js'),
   Post = require('../models/posts.js');
 
