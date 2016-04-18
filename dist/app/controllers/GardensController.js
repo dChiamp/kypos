@@ -2,7 +2,7 @@ app.controller('GardensController', GardensController);
 
 // GardensController.$inject = ['$scope', '$http', '$stateParams', 'Account'];
 
-function GardensController ($scope, $http, $stateParams, Account, toastr) {
+function GardensController ($scope, $http, $stateParams, Account, toastr, $location) {
   var vm = this;
   vm.all = [];
   // console.log("whos on scope: ", vm.all)
@@ -88,6 +88,8 @@ function GardensController ($scope, $http, $stateParams, Account, toastr) {
           vm.all.push(response.data)
         })
         vm.newGarden = {}
+        // $location
+        $location.path('/map');
         toastr.success('Garden Added!')
     }
 

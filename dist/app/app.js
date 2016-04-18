@@ -1,4 +1,4 @@
 var app = angular
-  .module('kypos', ['ui.router', 'auth0', 'satellizer', 'angular-storage', 
-                    'angular-jwt', 'uiGmapgoogle-maps', 'geolocation', 'ngAnimate', 'toastr'])
+  .module('kypos', ['ngMaterial', 'ngMessages', 'ui.router', 'auth0', 'satellizer', 'angular-storage', 
+                    'angular-jwt', 'uiGmapgoogle-maps', 'geolocation', 'ngAnimate', 'toastr',])
 

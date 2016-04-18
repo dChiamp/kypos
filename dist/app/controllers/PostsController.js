@@ -11,6 +11,10 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
   vm.deletePost = deletePost;
   vm.isUsersPost = isUsersPost;
 
+
+
+  // $scope.msg.show = false;
+
   getPosts();
   // checkIfPostBelongsGarden();
   // gets posts and FIlters for garden match
@@ -38,15 +42,23 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
     // iterate thru all messages
     // check if author matches current user id
     for(var i = 0; i < vm.all.length; i++) {
-    var post = vm.all[i];
-    $scope.msg = vm.all[i]
-    console.log("post object:", post)
-    var postUserId = vm.all[i].author[0]._id
-      if (postUserId === userId) {
-        // if msg belongs to user, allow delete
-        $scope.msg.deletable = true
-        // return true;
-      }
+      var post = vm.all[i];
+      $scope.msg = vm.all[i]
+      console.log("post object:", post)
+      var postUserId = vm.all[i].author[0]._id
+        console.log("DO THEsE MATCH: ", postUserId, userId)
+        if (postUserId == userId) {
+          // if msg belongs to user, allow delete
+          console.log("THEY MATCH")
+
+          $scope.msg.deletable = true;
+          // $scope.post = 'show';
+          console.log($scope.msg.deletable)
+          // return true;
+        } else {
+          console.log("NO") 
+           $scope.msg.deletable = false;
+        }
     }
   }
 
@@ -61,10 +73,11 @@ function PostsController ($scope, $http, $stateParams, Account, $location, toast
       .post('/api/users/' + userId +  '/posts/' + gardenId, vm.newMessage)
       .then(function(response){
         vm.all.push(response.data)
+        // isUsersPost();
       })
       toastr.success('Message Sent!')
       vm.newMessage = {}
-      location.reload();
+      // location.reload();
   }
 
   function deletePost(post) {

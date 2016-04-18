@@ -37,7 +37,7 @@
         <p> Author: <a ng-href="/user/{{p.author[0]._id}}">{{p.author[0].username}} </a> </p>
         <!-- <p> deletable?: </p> -->
         <div ng-if="msg.deletable"> 
-          <button class="btn btn-danger" ng-click="pc.deletePost(p)"> delete</button> 
+            <button class="btn btn-danger" ng-click="pc.deletePost(p)"> delete</button> 
         </div>
       </div>
 
@@ -105,4 +105,39 @@
     </div>
 
   </div>
+</div>
+
+<div id="gallery-row-1" ng-controller="CardsController" ng-cloak="" >
+  <md-content class="md-padding" layout-xs="column" layout="row">
+    <div flex-xs="" flex-gt-xs="33" flex-gt-md="35" layout="column">
+      <md-card>
+        <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{garden.name}}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+
+          <h4> Details: </h4>
+          <ul>
+            <li> Address: {{garden.address}} </li>
+            <li> Description: {{garden.description}} </li>
+          </ul>
+
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-icon-button" aria-label="edit">
+            <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="favorite">
+            <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="Message">
+            <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
+          </md-button>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </md-content>
 </div>

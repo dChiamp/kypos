@@ -86,7 +86,8 @@ no-repeat center center fixed;
   -o-background-size: cover;
   background-size: cover;
   background-color: red;*/
-  background-color: lightblue;
+  /*background-color: lightblue;*/
+  background-color: white;
 }
 
 #nav-bar {
@@ -106,3 +107,9 @@ no-repeat center center fixed;
   font-size: 70px;
   color: #FFAF46;
 }
+
+/*msg board*/
+.listdemoBasicUsage md-divider {
+  margin-top: 10px;
+  margin-bottom: 0; }
+
