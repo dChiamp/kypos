@@ -7,38 +7,28 @@
           <img ng-src="" class="md-card-image" alt="{{garden.name}}">
           <md-card-title>
             <md-card-title-text>
-              <span class="md-headline">{{garden.name}}</span>
+              <span id="garden-card-title" class="md-headline">{{garden.name}}</span>
             </md-card-title-text>
           </md-card-title>
           <md-card-content>
-              <p>Details: </p>
-              <p> Address: {{garden.address}} </p>
-              <p> Description: {{garden.description}} </p>
+            <!-- <p>Details: </p> -->
+            <p> Address: {{garden.address}} </p>
+            <p> Description: {{garden.description}} </p>
           </md-card-content>
           <md-card-actions layout="row" layout-align="end center">
-          <div ng-init="gc.doesGardenBelongToUser()">
-            <md-button ng-if="isEditable" class="md-icon-button" aria-label="edit" ng-click="gc.showEditForm=true" ng-hide="gc.showEditForm" >
-              <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
-            </md-button>
-          </div>
-
-          <div ng-init="gc.isUserMemberOfGarden()">
-    
-            <md-button ng-if="canJoinGarden" ng-click="gc.joinGarden(garden)" class="md-icon-button" aria-label="favorite">
-              <i class="fa fa-heart-o fa-2x" aria-hidden="true"></i>
-            </md-button>
-
-            <md-button ng-if="canUnjoinGarden" ng-click="gc.unjoinGarden(garden)" class="md-icon-button" aria-label="favorite">
-              <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
-            </md-button>
-
-          </div>
-
-
-            <md-button class="md-icon-button" aria-label="Message">
-              <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
-            </md-button>
-
+            <div ng-init="gc.doesGardenBelongToUser()">
+              <md-button ng-if="isEditable" class="md-icon-button" aria-label="edit" ng-click="gc.showEditForm=true" ng-hide="gc.showEditForm" >
+                <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+              </md-button>
+            </div>
+            <div ng-init="gc.isUserMemberOfGarden()">
+              <md-button ng-if="canJoinGarden" ng-click="gc.joinGarden(garden)" class="md-icon-button" aria-label="favorite">
+                <i class="fa fa-heart-o fa-2x" aria-hidden="true"></i>
+              </md-button>
+              <md-button ng-if="canUnjoinGarden" ng-click="gc.unjoinGarden(garden)" class="md-icon-button" aria-label="favorite">
+                <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
+              </md-button>
+            </div>
           </md-card-actions>
 
           <form ng-show="gc.showEditForm" ng-submit="gc.updateGarden(garden)">
@@ -74,6 +64,7 @@
 
       <md-content class="md-whiteframe-4dp">
         <md-list flex="">
+        <md-divider></md-divider>
           <!-- <md-subheader class="md-no-sticky">subheader</md-subheader> -->
            <md-list-item class="md-3-line" ng-repeat="p in pc.all track by $index" ng-click="null">
             <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}">
@@ -88,6 +79,32 @@
           </md-list-item>
           <md-divider></md-divider>
 
+          <md-list-item class="md-2-line">
+              <md-subheader class="md-no-sticky">Leave A Message</md-subheader>
+
+          <div>
+            <md-button ng-click="pc.showEditForm=true" ng-hide="pc.showEditForm" class="md-icon-button" aria-label="Message">
+              <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
+            </md-button>
+              <div id="msg-container" ng-show="pc.showEditForm">
+                <form ng-submit="pc.newPost()">
+                  <p> Post a Message to Connect</p>
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Title"
+                      ng-model="pc.newMessage.title">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Content"
+                      ng-model="pc.newMessage.content">
+                  </div>
+                  <input type="submit" value="Send Message" class="btn btn-success">&nbsp;
+                </form>
+                <button ng-click="pc.showEditForm=false" class="btn btn-danger">Close</button>
+            </div>
+          </div>
+
+
+          </md-list-item>
         </md-list>
       </md-content>
     </div>

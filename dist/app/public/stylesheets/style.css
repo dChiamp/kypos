@@ -113,3 +113,7 @@ no-repeat center center fixed;
   margin-top: 10px;
   margin-bottom: 0; }
 
+#garden-card-title {
+  padding: 4%;
+  /*text-align: center;*/
+}
