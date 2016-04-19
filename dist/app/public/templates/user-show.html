@@ -1,11 +1,58 @@
-<h1 ng-init="uc.getUser()">  User Show Page </h1>
+<h1 ng-init="uc.getUser()">  {{user.username}}'s Public Page </h1>
 <!-- <h1>User Show Page</h1> -->
 <hr>
-
+<!-- 
 <div class="col-md-6 col-md-offset-3">
   <div id="user-show-container" class=>
     <p>  Username: {{user.username}} </p>
     <p>  Email: {{user.email}} </p>
     <p>  Garden: <a ng-href="/gardens/{{user.gardens[0]._id}}"> {{user.gardens[0].name}} </a> </p>
+  </div>
+</div> -->
+
+
+<!-- <div ng-cloak="" class="carddemoCardActionButtons">
+  <md-content class="md-padding" layout-xs="column" layout="column" layout-align="center">
+   <div flex-xs="" flex-gt-xs="50" layout="column">
+      <md-card class="md-whiteframe-7dp"> -->
+<div class="col-lg-4 col-centered">
+    
+  <div ng-cloak="" class="carddemoCardActionButtons">
+    <!-- <md-content class="md-padding" layout-xs="column" layout="row" layout-align="center"> -->
+      <!-- <div flex-xs="" flex-gt-xs="50" layout="column"> -->
+    <md-content>
+      <div>
+        <md-card class="md-whiteframe-7dp">
+          <md-card-header>
+            <md-card-avatar>
+              <!-- <i class="fa fa-user fa-5x" aria-hidden="true"></i> -->
+            </md-card-avatar>
+            <md-card-header-text>
+              <!-- <span class="md-title">Angular</span> -->
+              <!-- <span class="md-subhead">Material</span> -->
+            </md-card-header-text>
+          </md-card-header>
+          <img ng-src="https://avatars3.githubusercontent.com/u/12719283?v=3&s=400" class="md-card-image" alt="Washed Out">
+          <md-card-title>
+            <md-card-title-text>
+              <h1 id="user-show-name" class="md-headline">{{user.username}}</h1>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+              <!-- <p>  Username: {{user.username}} </p> -->
+              <p>  Email: {{user.email}} </p>
+              <p>  Garden: <a ng-href="/gardens/{{user.gardens[0]._id}}"> {{user.gardens[0].name}} </a> </p>
+          </md-card-content>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button> 
+              <i class="fa fa-heart-o fa-2x" aria-hidden="true"></i>
+            </md-button>
+            <md-button>
+              <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
+            </md-button>
+          </md-card-actions>
+        </md-card>
+      </div>
+    </md-content>
   </div>
 </div>

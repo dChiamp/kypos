@@ -122,3 +122,12 @@ no-repeat center center fixed;
   padding-left: 4%;
   /*text-align: center;*/
 }
+
+.col-centered {
+  float: none;
+  margin: 0 auto; }
+
+#user-show-name {
+  text-align: center;
+}
+

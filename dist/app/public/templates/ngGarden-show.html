@@ -1,10 +1,11 @@
 <div ng-init="gc.getGarden()"> </div>
 
   <div id="garden-show-card" ng-controller="GardensController as gc" ng-cloak="" >
-    <md-content class="md-padding " layout-xs="column" layout="row" layout-align="center">
-      <div flex-xs="" flex-gt-xs="33" flex-gt-md="35" layout="column">
+    <md-content class="md-padding" layout-xs="column" layout="row" layout-align="center">
+      <!-- <div flex-xs="" flex-gt-xs="33" flex-gt-md="35" layout="column"> -->
+      <div>
         <md-card class="md-whiteframe-4dp">
-          <img ng-src="" class="md-card-image" alt="{{garden.name}}">
+          <img ng-src="http://www.clipartbest.com/cliparts/9T4/zBM/9T4zBMXTE.png" class="md-card-image" alt="{{garden.name}}">
           <md-card-title>
             <md-card-title-text>
               <span id="garden-card-title" class="md-headline">{{garden.name}}</span>

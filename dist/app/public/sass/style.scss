@@ -6,7 +6,7 @@ body {
   color: black;
 }
 
-#garden-home {
+garden-home {
   background: url("http://3blmedia.com/media/images/GMUrbanGardens04_0.jpg") no-repeat center center fixed;
 }
 
@@ -86,9 +86,44 @@ no-repeat center center fixed;
   -o-background-size: cover;
   background-size: cover;
   background-color: red;*/
-  background-color: lightblue;
+  /*background-color: lightblue;*/
+  background-color: white;
 }
 
 #nav-bar {
   background-color: green;
 }
+
+#welcome-page{
+  font-size: 48px;
+  color: white;
+  background-color: #FFAF46;
+  border-radius: 5px;
+  padding: 20px;
+  opacity: 0.9;
+
+}
+#title {
+  font-size: 70px;
+  color: #FFAF46;
+}
+
+/*msg board*/
+.listdemoBasicUsage md-divider {
+  margin-top: 10px;
+  margin-bottom: 0; }
+
+#garden-card-title {
+  padding: 4%;
+  /*text-align: center;*/
+}
+
+#profile-card-title {
+  padding-left: 4%;
+  /*text-align: center;*/
+}
+
+.col-centered {
+  float: none;
+  margin: 0 auto; }
+

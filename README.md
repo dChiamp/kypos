@@ -39,7 +39,7 @@ What Else?
 -**Grunt** taskrunner
 -**Google Maps API**
 -**Geocoder** to translate addresses to lat long
--**toaster** for flash notifications
+-**Toaster** for flash notifications
 
 
 Coming Soon:
