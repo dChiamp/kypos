@@ -1,12 +1,14 @@
 app.controller('UserController', UserController)
 
-function UserController ($scope, $http, $stateParams) {
+function UserController ($scope, $http, $stateParams, Account) {
   var vm = this;
   vm.all = [];
 
   vm.getUser = getUser;
   vm.doesGardenBelongToUser = doesGardenBelongToUser;
-  
+  vm.currentUser = currentUser;
+  vm.getCurrentUserId = getCurrentUserId;
+
   function getUser() {
     var userId = $stateParams.id;
     $http
@@ -15,6 +17,15 @@ function UserController ($scope, $http, $stateParams) {
         console.log("getUser: ", response.data)
         $scope.user = response.data;
       })
+  }
+
+  function currentUser() {
+   return Account.currentUser();
+  }
+
+  function getCurrentUserId() {
+    console.log(Account.getUserIdFromJwt());
+    return Account.getUserIdFromJwt();
   }
 
   // edit garden permissions

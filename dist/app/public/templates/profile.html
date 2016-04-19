@@ -2,7 +2,7 @@
 <hr>
 
 <div class="col-md-6 col-md-offset-3">
-    
+<!--     
     <div ng-controller="MainController as main" id="prof-details">
       <h3>{{main.currentUser.displayName}}</h3>
       <p><strong>Username:</strong> {{main.currentUser().username}}</p>
@@ -11,15 +11,13 @@
       <p><strong>Garden:</strong> <a ng-href="/gardens/{{main.currentUser().gardens[0]._id}}"> {{main.currentUser().gardens[0].name}} </a> </p>
     </div>
 
-
-
   <div ng-controller="UserController">
     <div ng-init="getUser()">
     </div>
-  </div>
+  </div> -->
 
   <!-- edit profile -->
-  <hr>
+<!--   <hr>
   <a href="#" ng-click="profile.showEditForm=true" ng-hide="profile.showEditForm" class="btn btn-warning"><i class="fa fa-pencil"></i> Edit Profile</a>
 
 
@@ -46,6 +44,58 @@
     <button ng-click="profile.showEditForm=false" class="btn btn-danger">Cancel</button>
   </div>
 
+ </div> -->
+
+
+
+
+<div ng-cloak="" class="carddemoCardActionButtons">
+  <md-content class="md-padding" layout-xs="column" layout="column" layout-align="center">
+   <div flex-xs="" flex-gt-xs="50" layout="column">
+      <md-card class="md-whiteframe-7dp">
+        <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="User Profile"> -->
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline"><h3 id="profile-card-title">{{profile.currentUser().displayName}}</h3></span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <p> Username: {{profile.currentUser().username}} </p>
+          <p> Email: {{profile.currentUser().email}} </p>
+          <p> Member Since: {{profile.currentUser().created | date:'MMMM dd, yyyy'}} </p>
+          <p><strong>Garden:</strong> <a ng-href="/gardens/{{profile.currentUser().gardens[0]._id}}"> {{profile.currentUser().gardens[0].name}} </a> </p>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-click="profile.showEditForm=true" ng-hide="profile.showEditForm" class="md-icon-button" aria-label="Edit">
+              <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+          </md-button>
+        </md-card-actions>
+        <div ng-show="profile.showEditForm" id="garden-card-form">
+          <H5> Edit your profile details </H5>
+          <form ng-submit="profile.updateProfile()">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Full Name"
+                ng-model="profile.new_profile.displayName"
+                  ng-value="profile.currentUser().displayName">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Username"
+                ng-model="profile.new_profile.username"
+                  ng-value="profile.currentUser().username">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Email"
+                ng-model="profile.new_profile.email"
+                  ng-value="profile.currentUser().email">
+            </div>
+            <input type="submit" value="Done!" class="btn btn-success">&nbsp;
+          </form>
+          <button ng-click="profile.showEditForm=false" class="btn btn-danger">Cancel</button>
+        </div>
+      </md-card>
+    </div>
+  </md-content>
+</div>
 
   <hr>
   <!-- post garden -->
@@ -69,6 +119,3 @@
       <button ng-click="gc.showEditForm=false" class="btn btn-danger">Cancel</button>
     </div>
   </div>
-
- </div>
-

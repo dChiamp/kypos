@@ -11,6 +11,8 @@ app.controller('ProfileController', ProfileController);
 function ProfileController ($location, Account, toastr) {
   var vm = this;
   vm.new_profile = {}; // form data
+  vm.currentUser = currentUser;
+  vm.getCurrentUserId = getCurrentUserId;
 
   vm.updateProfile = function() {
     Account
@@ -29,5 +31,15 @@ function ProfileController ($location, Account, toastr) {
       //   console.log("from profctrl:")
       // )
   }
+
+  function currentUser() {
+   return Account.currentUser();
+  }
+
+  function getCurrentUserId() {
+    console.log(Account.getUserIdFromJwt());
+    return Account.getUserIdFromJwt();
+  }
+
 
 }

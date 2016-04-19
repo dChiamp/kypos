@@ -117,3 +117,8 @@ no-repeat center center fixed;
   padding: 4%;
   /*text-align: center;*/
 }
+
+#profile-card-title {
+  padding-left: 4%;
+  /*text-align: center;*/
+}
