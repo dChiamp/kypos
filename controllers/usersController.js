@@ -23,6 +23,7 @@ var usersController = {
       user.displayName = req.body.displayName || user.displayName;
       user.username = req.body.username || user.username;
       user.email = req.body.email || user.email;
+      user.picture = req.body.picture || user.picture;
       user.save(function(err) {
         res.send(user.populate('posts'));
       });
