@@ -7,7 +7,7 @@ var postsController = {
       .populate("author")
       .exec(function (err, allPosts) {
         var gardensPosts = []
-        console.log("allposts garden Ids: ", allPosts[0].garden)
+        // console.log("allposts garden Ids: ", allPosts[0].garden)
         for (var i = 0; i < allPosts.length; i++ ) {
           var postObj = allPosts[i]
           var postGardenId = postObj.garden;

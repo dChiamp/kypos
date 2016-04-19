@@ -35,10 +35,11 @@ var gardensController = {
     var name = req.body.name
     var address = req.body.address;
     var description = req.body.description;
+    var picture = req.body.picture;
 
     var coords = req.body.coords;
 
-    Garden.create({name: name, address: address, description: description, coords: coords}, 
+    Garden.create({name: name, address: address, description: description, picture: picture, coords: coords}, 
     function(err, newGarden) { 
       console.log(newGarden)
       err ? console.log(err) : res.json(newGarden);
