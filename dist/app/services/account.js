@@ -1,6 +1,7 @@
 app.service('Account', Account)
 
 Account.$inject = ["$http", "$q", "$auth", "jwtHelper"]; // minification protection
+
 function Account($http, $q, $auth, jwtHelper) {
   var self = this;
   self.user = null;
@@ -92,7 +93,6 @@ function Account($http, $q, $auth, jwtHelper) {
         )
     );
   }
-
   
   function getUserIdFromJwt() {
     var payload = window.localStorage.satellizer_token;
